@@ -1,4 +1,4 @@
-#H1 Star Wars vs. Cartoons: Reverse Tower Defense Mobile App
+#Star Wars vs. Cartoons: Reverse Tower Defense Mobile App
 
 Included thus far in the project are three things. 
 
