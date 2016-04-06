@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CDDC774F-08DF-404D-A485-9B761DE3B4E4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SWTowerDefense</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B8E1696253B2E3BBBB300A7DC0ABB94F622108DE</key>
+		<string>https://github.com/gborges0727/CSE2102-TowerDefenseGame.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SWTowerDefense/SWTowerDefense.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B8E1696253B2E3BBBB300A7DC0ABB94F622108DE</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/gborges0727/CSE2102-TowerDefenseGame.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B8E1696253B2E3BBBB300A7DC0ABB94F622108DE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B8E1696253B2E3BBBB300A7DC0ABB94F622108DE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TowerDefenseGame</string>
+		</dict>
+	</array>
+</dict>
+</plist>
