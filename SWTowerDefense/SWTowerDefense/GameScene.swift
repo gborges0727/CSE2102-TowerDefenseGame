@@ -55,7 +55,7 @@ func handleWave() {
     let spawnInterval = 1; let critterAmount = 10
     
     for _ in 1...critterAmount {
-        let critter = Critter()
+        
     }
 }
 

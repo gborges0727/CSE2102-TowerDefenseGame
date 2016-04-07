@@ -11,13 +11,22 @@ import GameplayKit
 
 @available(iOS 9.0, *)
 class Critter: GKComponent {
-    var scene: GameScene!
+    var scene: SKScene!
     let walkSpeed = 1
-    var lifeHealth = 50
+    let lifeHealth = 50
     var nextPoint = 0
     var travelPoint = TravelPoint()
     
-    
+    init(gameScene: SKScene) {
+        scene = gameScene
+        let sprite = SKSpriteNode(imageNamed: "redSquare")
+        sprite.xScale = 0.05
+        sprite.yScale = 0.05
+        var initialPos = CGPoint(x: 0, y: 0.5)
+        sprite.position(initialPos)
+        
+        scene.addChild(sprite)
+    }
     
     func update() {
         // Function used to call other functions and update the stats
