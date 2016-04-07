@@ -7,9 +7,11 @@
 //
 
 import SpriteKit
+import GameplayKit
 
-class Enemy {
-    let parentScene = GameScene
+@available(iOS 9.0, *)
+class Enemy: GKComponent {
+    var scene: GameScene!
     let walkSpeed = 1
     var lifeHealth = 50
     var nextPoint = 0

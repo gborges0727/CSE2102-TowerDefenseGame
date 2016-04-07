@@ -17,6 +17,7 @@ class GameScene: SKScene {
         myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         
         self.addChild(myLabel)
+        self.backgroundColor = SKColor.whiteColor()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -25,17 +26,17 @@ class GameScene: SKScene {
         for touch in (touches ) {
             let location = touch.locationInNode(self)
             
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
+            let towerSprite = SKSpriteNode(imageNamed:"blueSquare")
             
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
+            towerSprite.xScale = 0.1
+            towerSprite.yScale = 0.1
+            towerSprite.position = location
             
             let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
             
-            sprite.runAction(SKAction.repeatActionForever(action))
+            towerSprite.runAction(SKAction.repeatActionForever(action))
             
-            self.addChild(sprite)
+            self.addChild(towerSprite)
         }
     }
    
