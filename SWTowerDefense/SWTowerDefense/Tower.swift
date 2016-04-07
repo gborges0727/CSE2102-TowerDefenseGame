@@ -6,14 +6,23 @@
 //
 //
 
-import UIKit
+import GameplayKit
 import SpriteKit
 
-class Tower: SKSpriteNode {
+@available(iOS 9.0, *)
+class Tower: GKComponent {
     
+    var scene: GameScene!
+    var sprite: SKSpriteNode!
     var attackRange = 10
     var damage = 10
     var fireRate = 1
+    var towerCost = 100
+    
+    init(scene: GameScene, sprite: SKSpriteNode) {
+        self.scene = scene
+        self.sprite = sprite
+    }
     
     func selectEnemy() {
         // Function used to get a target enemy

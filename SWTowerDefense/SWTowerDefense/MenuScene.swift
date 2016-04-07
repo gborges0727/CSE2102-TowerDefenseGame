@@ -8,6 +8,6 @@
 
 import SpriteKit
 
-class MenuScene {
+class MenuScene: SKScene {
     
 }
