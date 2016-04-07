@@ -10,27 +10,20 @@ import SpriteKit
 import GameplayKit
 
 @available(iOS 9.0, *)
-class Critter: GKComponent {
-    var scene: SKScene!
+class Critter: SKSpriteNode {
+    // var scene: SKScene!
     let walkSpeed = 1.0
     let lifeHealth = 50
     var nextPoint = 0
     var travelPoint = TravelPoint()
     
-    init(gameScene: SKScene) {
-        scene = gameScene
-        let sprite = SKSpriteNode(imageNamed: "redSquare")
-        sprite.xScale = 0.05
-        sprite.yScale = 0.05
-        let initialPos = CGPointMake(0, 1)
-        sprite.position = initialPos
-        
-        // Change this eventually to use followPath SKAction
-        // With a CGPath once the list of path points is created
-        let moveSprite = SKAction.moveByX(50, y:0, duration: walkSpeed * 10)
-        sprite.runAction(moveSprite)
-        
-        scene.addChild(sprite)
+    init() {
+        let texture = SKTexture(imageNamed: "redSquare")
+        super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func update() {

@@ -24,13 +24,7 @@ class GameScene: SKScene {
         
         //self.addChild(myLabel)
         self.backgroundColor = SKColor.whiteColor()
-        // handleWave(self)
-        var sequence = [SKAction]()
-        for _ in 1...10 {
-            let critter  = Critter.init(gameScene: self)
-            critters.append(critter)
-            
-        }
+        handleWave()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -49,7 +43,7 @@ class GameScene: SKScene {
             
             towerSprite.runAction(SKAction.repeatActionForever(action))
             
-            self.addChild(towerSprite)
+            addChild(towerSprite)
         }
     }
    
@@ -58,37 +52,39 @@ class GameScene: SKScene {
         
         // Update 
     }
-}
-
-@available(iOS 9.0, *)
-func handleWave(scene: SKScene) {
-    // Create content to handle waves && Adjust enemy difficulty based on wave number
-    let spawnInterval = 1; let critterAmount = 10
     
-    
-    for _ in 1...critterAmount {
-        let critter = Critter.init(gameScene: scene)
-        //critters.add(critter)
-    }
-}
-
-func initTravelPoints() {
-    // Function to initialize the Enemy travel points
-    // Can be modified to work differently depending on the background "map"
-}
-
-func towerCritterCollision(towerPoint: CGPoint, towerRange: CGFloat,
-                         critterPoint: CGPoint, collisionRadius: CGFloat) -> Bool {
-    // This function is called by the tower to test whether an enemy exits in 
-    // its attack range!
-    
-    let xDiff = towerPoint.x - critterPoint.x
-    let yDiff = towerPoint.y - critterPoint.y
-    let distance = sqrt(xDiff * xDiff + yDiff * yDiff)
-    
-    if (distance <= towerRange + collisionRadius) {
-        return true
+    func handleWave() {
+        // Create content to handle waves && Adjust enemy difficulty based on wave number
+        let spawnInterval = 1; let critterAmount = 10
+        
+        
+        var critter = Critter()
+        let initPoint = CGPoint(x: self.frame.width/2,y: self.frame.width/2)
+        critter.xScale = 0.05
+        critter.yScale = 0.05
+        critter.position = initPoint
+        addChild(critter)
     }
     
-    return false
+    func towerCritterCollision(towerPoint: CGPoint, towerRange: CGFloat,
+                               critterPoint: CGPoint, collisionRadius: CGFloat) -> Bool {
+        // This function is called by the tower to test whether an enemy exits in
+        // its attack range!
+        
+        let xDiff = towerPoint.x - critterPoint.x
+        let yDiff = towerPoint.y - critterPoint.y
+        let distance = sqrt(xDiff * xDiff + yDiff * yDiff)
+        
+        if (distance <= towerRange + collisionRadius) {
+            return true
+        }
+        
+        return false
+    }
+    
+    func initTravelPoints() {
+        // Function to initialize the Enemy travel points
+        // Can be modified to work differently depending on the background "map"
+    }
+
 }
