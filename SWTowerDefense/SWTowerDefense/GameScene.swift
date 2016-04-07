@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+@available(iOS 9.0, *)
 class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -18,6 +19,7 @@ class GameScene: SKScene {
         
         self.addChild(myLabel)
         self.backgroundColor = SKColor.whiteColor()
+        handleWave()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -47,8 +49,14 @@ class GameScene: SKScene {
     }
 }
 
+@available(iOS 9.0, *)
 func handleWave() {
     // Create content to handle waves && Adjust enemy difficulty based on wave number
+    let spawnInterval = 1; let critterAmount = 10
+    
+    for _ in 1...critterAmount {
+        let critter = Critter()
+    }
 }
 
 func initTravelPoints() {
@@ -56,13 +64,13 @@ func initTravelPoints() {
     // Can be modified to work differently depending on the background "map"
 }
 
-func towerEnemyCollision(towerPoint: CGPoint, towerRange: CGFloat,
-                         enemyPoint: CGPoint, collisionRadius: CGFloat) -> Bool {
+func towerCritterCollision(towerPoint: CGPoint, towerRange: CGFloat,
+                         critterPoint: CGPoint, collisionRadius: CGFloat) -> Bool {
     // This function is called by the tower to test whether an enemy exits in 
     // its attack range!
     
-    let xDiff = towerPoint.x - enemyPoint.x
-    let yDiff = towerPoint.y - enemyPoint.y
+    let xDiff = towerPoint.x - critterPoint.x
+    let yDiff = towerPoint.y - critterPoint.y
     let distance = sqrt(xDiff * xDiff + yDiff * yDiff)
     
     if (distance <= towerRange + collisionRadius) {
