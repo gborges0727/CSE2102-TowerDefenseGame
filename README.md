@@ -1,4 +1,4 @@
-#Star Wars vs. Cartoons: Reverse Tower Defense Mobile App
+#Star Wars vs. Cartoons: Tower Defense Mobile App
 
 A project for this group's class: CSE2102 - Introduction to Software Engineering.
 
