@@ -9,5 +9,11 @@
 import SpriteKit
 
 class TravelPoint {
+    var nextPoint = TravelPoint()
     
+    // Constructor used to
+    convenience init(nextPoint: TravelPoint) {
+        self.init()
+        self.nextPoint = nextPoint
+    }
 }

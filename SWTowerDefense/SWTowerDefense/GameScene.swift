@@ -43,3 +43,7 @@ class GameScene: SKScene {
         /* Called before each frame is rendered */
     }
 }
+
+func handleWave() {
+    // Create content to handle waves && Adjust enemy difficulty based on wave number
+}
