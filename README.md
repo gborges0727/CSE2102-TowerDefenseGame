@@ -4,8 +4,7 @@ A project for this group's class: CSE2102 - Introduction to Software Engineering
 
 ###Our Goal
 
-Our goal with this project is to create a tower defense game; but in reverse. You are the critters trying to get to the end, and are 
-trying to avoid the towers shooting at you. Given the name of the title our themes are to incorporate Star Wars with pop-culture cartoons (i.e. 
+Our goal with this project is to create a tower defense game with an unique theme! It's based on the classic Tower Defense style game (like [Bloons Tower Defense 5](http://ninjakiwi.com/Games/Tower-Defense/Play/Bloons-Tower-Defense-5.html)). Given the name of the title our themes are to incorporate Star Wars with pop-culture cartoons (i.e. 
 The Simpsons, Family Guy, etc.)
 
 This game is purely for fun, and given probable licencing conflicts, only exists for the purposes of this group's CSE-2102 class. We make no claims 
@@ -21,5 +20,5 @@ Included thus far in the project are three things.
 2. An outline (in Java) of our Classes.
 	This is a generic idea of what classes we will need to serve the core game logic of our project. 
 
-3. An empty AndroidStudio project.
-	This may change to xCode given the sample obj-c game, thinking that it will be easier and more efficient to code in xCode rather than Android Studio.
+3. An xCode project.
+	This is our folder for our ongoing development in xCode using SpriteKit.
