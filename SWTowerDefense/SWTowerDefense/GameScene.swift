@@ -55,3 +55,19 @@ func initTravelPoints() {
     // Function to initialize the Enemy travel points
     // Can be modified to work differently depending on the background "map"
 }
+
+func towerEnemyCollision(towerPoint: CGPoint, towerRange: CGFloat,
+                         enemyPoint: CGPoint, collisionRadius: CGFloat) -> Bool {
+    // This function is called by the tower to test whether an enemy exits in 
+    // its attack range!
+    
+    let xDiff = towerPoint.x - enemyPoint.x
+    let yDiff = towerPoint.y - enemyPoint.y
+    let distance = sqrt(xDiff * xDiff + yDiff * yDiff)
+    
+    if (distance <= towerRange + collisionRadius) {
+        return true
+    }
+    
+    return false
+}
