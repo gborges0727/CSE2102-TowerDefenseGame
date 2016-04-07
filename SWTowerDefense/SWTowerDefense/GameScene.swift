@@ -10,16 +10,27 @@ import SpriteKit
 
 @available(iOS 9.0, *)
 class GameScene: SKScene {
+    
+    var critters = [Critter]()
+    var towers = [Tower]()
+    //var travelPoints = [TravelPoint]()
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
         myLabel.text = "Hello, World!";
         myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
         
-        self.addChild(myLabel)
+        //self.addChild(myLabel)
         self.backgroundColor = SKColor.whiteColor()
-        handleWave()
+        // handleWave(self)
+        var sequence = [SKAction]()
+        for _ in 1...10 {
+            let critter  = Critter.init(gameScene: self)
+            critters.append(critter)
+            
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -50,12 +61,14 @@ class GameScene: SKScene {
 }
 
 @available(iOS 9.0, *)
-func handleWave() {
+func handleWave(scene: SKScene) {
     // Create content to handle waves && Adjust enemy difficulty based on wave number
     let spawnInterval = 1; let critterAmount = 10
     
+    
     for _ in 1...critterAmount {
-        
+        let critter = Critter.init(gameScene: scene)
+        //critters.add(critter)
     }
 }
 
