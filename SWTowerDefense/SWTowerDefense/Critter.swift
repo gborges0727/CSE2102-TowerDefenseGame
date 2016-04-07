@@ -22,8 +22,8 @@ class Critter: GKComponent {
         let sprite = SKSpriteNode(imageNamed: "redSquare")
         sprite.xScale = 0.05
         sprite.yScale = 0.05
-        var initialPos = CGPoint(x: 0, y: 0.5)
-        sprite.position(initialPos)
+        var initialPos = CGPointMake(0, 1)
+        sprite.position = initialPos
         
         scene.addChild(sprite)
     }
