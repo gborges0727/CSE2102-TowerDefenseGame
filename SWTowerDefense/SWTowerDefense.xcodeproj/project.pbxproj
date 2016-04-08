@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		4510AFE21CB5A96100654387 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510AFE11CB5A96100654387 /* AppDelegate.swift */; };
-		4510AFE41CB5A96100654387 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4510AFE31CB5A96100654387 /* GameScene.sks */; };
 		4510AFE61CB5A96100654387 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510AFE51CB5A96100654387 /* GameScene.swift */; };
 		4510AFE81CB5A96100654387 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510AFE71CB5A96100654387 /* GameViewController.swift */; };
 		4510AFED1CB5A96100654387 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4510AFEC1CB5A96100654387 /* Images.xcassets */; };
 		4510AFF01CB5A96100654387 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4510AFEE1CB5A96100654387 /* LaunchScreen.xib */; };
 		4510AFFC1CB5A96200654387 /* SWTowerDefenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510AFFB1CB5A96200654387 /* SWTowerDefenseTests.swift */; };
+		45670F651CB5FF1E002D5DC9 /* TravelPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45670F641CB5FF1E002D5DC9 /* TravelPoint.swift */; };
 		45C5250A1CB5E5B400705AAA /* Tower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C525091CB5E5B400705AAA /* Tower.swift */; };
+		45C5250C1CB5EA4D00705AAA /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C5250B1CB5EA4D00705AAA /* MenuScene.swift */; };
+		45C5250E1CB5EA5B00705AAA /* MenuSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C5250D1CB5EA5B00705AAA /* MenuSceneViewController.swift */; };
+		45C525101CB5EAF700705AAA /* Critter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C5250F1CB5EAF700705AAA /* Critter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +34,6 @@
 		4510AFDC1CB5A96100654387 /* SWTowerDefense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWTowerDefense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4510AFE01CB5A96100654387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4510AFE11CB5A96100654387 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4510AFE31CB5A96100654387 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		4510AFE51CB5A96100654387 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		4510AFE71CB5A96100654387 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4510AFEC1CB5A96100654387 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -39,7 +41,11 @@
 		4510AFF51CB5A96200654387 /* SWTowerDefenseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWTowerDefenseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4510AFFA1CB5A96200654387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4510AFFB1CB5A96200654387 /* SWTowerDefenseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWTowerDefenseTests.swift; sourceTree = "<group>"; };
+		45670F641CB5FF1E002D5DC9 /* TravelPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelPoint.swift; sourceTree = "<group>"; };
 		45C525091CB5E5B400705AAA /* Tower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tower.swift; sourceTree = "<group>"; };
+		45C5250B1CB5EA4D00705AAA /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		45C5250D1CB5EA5B00705AAA /* MenuSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSceneViewController.swift; sourceTree = "<group>"; };
+		45C5250F1CB5EAF700705AAA /* Critter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Critter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,14 +87,17 @@
 		4510AFDE1CB5A96100654387 /* SWTowerDefense */ = {
 			isa = PBXGroup;
 			children = (
-				45C525091CB5E5B400705AAA /* Tower.swift */,
 				4510AFE11CB5A96100654387 /* AppDelegate.swift */,
-				4510AFE31CB5A96100654387 /* GameScene.sks */,
+				45C5250F1CB5EAF700705AAA /* Critter.swift */,
+				45670F641CB5FF1E002D5DC9 /* TravelPoint.swift */,
 				4510AFE51CB5A96100654387 /* GameScene.swift */,
 				4510AFE71CB5A96100654387 /* GameViewController.swift */,
 				4510AFEC1CB5A96100654387 /* Images.xcassets */,
 				4510AFEE1CB5A96100654387 /* LaunchScreen.xib */,
+				45C5250B1CB5EA4D00705AAA /* MenuScene.swift */,
+				45C5250D1CB5EA5B00705AAA /* MenuSceneViewController.swift */,
 				4510AFDF1CB5A96100654387 /* Supporting Files */,
+				45C525091CB5E5B400705AAA /* Tower.swift */,
 			);
 			path = SWTowerDefense;
 			sourceTree = "<group>";
@@ -162,6 +171,8 @@
 		4510AFD41CB5A96100654387 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0730;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Gabe Borges";
 				TargetAttributes = {
@@ -200,7 +211,6 @@
 			files = (
 				4510AFF01CB5A96100654387 /* LaunchScreen.xib in Resources */,
 				4510AFED1CB5A96100654387 /* Images.xcassets in Resources */,
-				4510AFE41CB5A96100654387 /* GameScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,8 +228,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45C525101CB5EAF700705AAA /* Critter.swift in Sources */,
 				4510AFE61CB5A96100654387 /* GameScene.swift in Sources */,
 				4510AFE81CB5A96100654387 /* GameViewController.swift in Sources */,
+				45C5250E1CB5EA5B00705AAA /* MenuSceneViewController.swift in Sources */,
+				45670F651CB5FF1E002D5DC9 /* TravelPoint.swift in Sources */,
+				45C5250C1CB5EA4D00705AAA /* MenuScene.swift in Sources */,
 				4510AFE21CB5A96100654387 /* AppDelegate.swift in Sources */,
 				45C5250A1CB5E5B400705AAA /* Tower.swift in Sources */,
 			);
