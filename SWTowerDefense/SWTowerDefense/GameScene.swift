@@ -24,7 +24,7 @@ class GameScene: SKScene {
         
         //self.addChild(myLabel)
         self.backgroundColor = SKColor.whiteColor()
-        handleWave()
+        loadCritters()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -53,7 +53,7 @@ class GameScene: SKScene {
         // Update 
     }
     
-    func handleWave() {
+    func loadCritters() {
         // Create content to handle waves && Adjust enemy difficulty based on wave number
         let spawnInterval = 1; let critterAmount = 10
         
