@@ -55,17 +55,25 @@ class GameScene: SKScene {
     
     func loadCritters() {
         // Create content to handle waves && Adjust enemy difficulty based on wave number
-        let spawnInterval = 1; let critterAmount = 10
+        let spawnInterval = 1.0; let critterAmount = 10
         
+        let delay = SKAction.waitForDuration(spawnInterval)
         
-        var critter = Critter()
-        let initPoint = CGPoint(x: self.frame.width/2,y: self.frame.width/2)
-        critter.xScale = 0.01
-        critter.yScale = 0.01
-        critter.position = initPoint
-        var moveDown = SKAction.moveTo(CGPointMake(100, 0), duration: 10)
-        critter.runAction(moveDown)
-        addChild(critter)
+        let addCritter = SKAction.runBlock({
+            [unowned self] in
+            let critter = Critter()
+            let initPoint = CGPoint(x: self.frame.width/2,y: self.frame.width/2)
+            critter.xScale = 0.01
+            critter.yScale = 0.01
+            critter.position = initPoint
+            let moveDown = SKAction.moveTo(CGPointMake(100, 0), duration: 10)
+            critter.runAction(moveDown)
+            self.addChild(critter)
+        })
+        
+        let loadAction = SKAction.sequence([delay, addCritter])
+        
+        runAction(SKAction.repeatAction(loadAction, count: critterAmount))
     }
     
     func towerCritterCollision(towerPoint: CGPoint, towerRange: CGFloat,
