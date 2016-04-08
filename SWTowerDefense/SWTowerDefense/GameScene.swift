@@ -60,9 +60,11 @@ class GameScene: SKScene {
         
         var critter = Critter()
         let initPoint = CGPoint(x: self.frame.width/2,y: self.frame.width/2)
-        critter.xScale = 0.05
-        critter.yScale = 0.05
+        critter.xScale = 0.01
+        critter.yScale = 0.01
         critter.position = initPoint
+        var moveDown = SKAction.moveTo(CGPointMake(100, 0), duration: 10)
+        critter.runAction(moveDown)
         addChild(critter)
     }
     
