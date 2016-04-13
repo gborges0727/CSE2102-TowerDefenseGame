@@ -12,7 +12,10 @@ class GameScene: SKScene {
     
     var critters = [Critter]()
     var towers = [Tower]()
-    //var travelPoints = [TravelPoint]()
+    var lives = 100
+    var cash = 1000
+    let livesLabel = SKLabelNode(fontNamed: "Arial")
+    let cashLabel = SKLabelNode(fontNamed: "Arial")
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -22,6 +25,18 @@ class GameScene: SKScene {
         //self.addChild(backgroundMap)
         
         self.backgroundColor = SKColor.whiteColor()
+        //let livesLabel = SKLabelNode(fontNamed: "Arial")
+        livesLabel.fontSize = 30
+        livesLabel.position = CGPointMake(100, 625)
+        livesLabel.fontColor = UIColor.blackColor()
+        //let cashLabel = SKLabelNode(fontNamed: "Arial")
+        cashLabel.fontSize = 30
+        cashLabel.position = CGPointMake(300, 625)
+        cashLabel.fontColor = UIColor.blackColor()
+        updateLabels(0, livesChange: 0)
+        
+        self.addChild(livesLabel)
+        self.addChild(cashLabel)
         loadCritters()
     }
     
@@ -31,17 +46,18 @@ class GameScene: SKScene {
         for touch in (touches ) {
             let location = touch.locationInNode(self)
             
-            let towerSprite = SKSpriteNode(imageNamed:"blueSquare")
-            
-            towerSprite.xScale = 0.1
-            towerSprite.yScale = 0.1
-            towerSprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            towerSprite.runAction(SKAction.repeatActionForever(action))
-            
-            addChild(towerSprite)
+            let tower = Tower()
+            if (canAffordTower(tower.towerCost)) {
+                let towerSprite = SKSpriteNode(imageNamed:"blueSquare")
+                
+                towerSprite.xScale = 0.1
+                towerSprite.yScale = 0.1
+                towerSprite.position = location
+                addChild(towerSprite)
+                towers.append(tower)
+                cash = cash - tower.towerCost
+                updateLabels(100, livesChange: 0)
+            }
         }
     }
    
@@ -60,16 +76,16 @@ class GameScene: SKScene {
         let addCritter = SKAction.runBlock({
             [unowned self] in
             let critter = Critter()
-            let initPoint = CGPoint(x: 0.0 , y: 650)
+            let initPoint = CGPoint(x: 0.0 , y: 550)
             critter.xScale = 0.01
             critter.yScale = 0.01
             critter.position = initPoint
             
-            let pointTwo = CGPointMake(900, 650)
-            let pointThree = CGPointMake(900, 450)
-            let pointFour = CGPointMake(100, 450)
-            let pointFive = CGPointMake(100, 250)
-            let endPoint = CGPointMake(900, 250)
+            let pointTwo = CGPointMake(900, 550)
+            let pointThree = CGPointMake(900, 350)
+            let pointFour = CGPointMake(100, 350)
+            let pointFive = CGPointMake(100, 150)
+            let endPoint = CGPointMake(900, 150)
             
             let moveInitToTwo = SKAction.moveTo(pointTwo, duration: critter.walkSpeed)
             let moveToThree = SKAction.moveTo(pointThree, duration: critter.walkSpeed / 2.5)
@@ -107,5 +123,20 @@ class GameScene: SKScene {
         // Function to initialize the Enemy travel points
         // Can be modified to work differently depending on the background "map"
     }
-
+    
+    func canAffordTower(cost: Int) -> Bool {
+        if ((cash - cost) > 0){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    
+    func updateLabels(cashChange: Int, livesChange: Int) {
+        cash = cash - cashChange
+        lives = lives - livesChange
+        cashLabel.text = "Cash: " + String(cash)
+        livesLabel.text = "Lives: " + String(lives)
+    }
 }
