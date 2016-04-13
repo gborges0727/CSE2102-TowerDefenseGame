@@ -48,22 +48,28 @@ class GameScene: SKScene {
             
             let tower = Tower()
             if (canAffordTower(tower.towerCost)) {
-                let towerSprite = SKSpriteNode(imageNamed:"blueSquare")
+                //let towerSprite = SKSpriteNode(imageNamed:"blueSquare")
                 
-                towerSprite.xScale = 0.1
-                towerSprite.yScale = 0.1
-                towerSprite.position = location
-                addChild(towerSprite)
+                tower.xScale = 0.1
+                tower.yScale = 0.1
+                tower.position = location
+                addChild(tower)
                 towers.append(tower)
-                cash = cash - tower.towerCost
-                updateLabels(100, livesChange: 0)
+                updateLabels(tower.towerCost, livesChange: 0)
             }
         }
     }
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        
+        for critter in critters {
+            if (critter.position == CGPoint(x: 900, y: 150)) {
+                critter.removeFromParent()
+                updateLabels(0, livesChange: 1)
+                let i = critters.indexOf(critter)
+                critters.removeAtIndex(i!)
+            }
+        }
         // Update 
     }
     
@@ -96,6 +102,7 @@ class GameScene: SKScene {
             let moveSequence = SKAction.sequence([moveInitToTwo, moveToThree, moveToFour, moveToFive, moveToEnd])
             critter.runAction(moveSequence)
             self.addChild(critter)
+            self.critters.append(critter)
         })
         
         let loadAction = SKAction.sequence([delay, addCritter])
@@ -125,7 +132,7 @@ class GameScene: SKScene {
     }
     
     func canAffordTower(cost: Int) -> Bool {
-        if ((cash - cost) > 0){
+        if ((cash - cost) >= 0){
             return true
         }
         else{
