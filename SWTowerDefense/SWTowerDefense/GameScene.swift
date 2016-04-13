@@ -16,10 +16,10 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let backgroundMap = SKSpriteNode(imageNamed: "baseBackground")
-        backgroundMap.position = CGPointMake(self.size.width/2, self.size.height/2)
-        backgroundMap.size = self.frame.size
-        self.addChild(backgroundMap)
+        //let backgroundMap = SKSpriteNode(imageNamed: "baseBackground")
+        //backgroundMap.position = CGPointMake(self.size.width/2, self.size.height/2)
+        //backgroundMap.size = self.frame.size
+        //self.addChild(backgroundMap)
         
         self.backgroundColor = SKColor.whiteColor()
         loadCritters()
@@ -60,12 +60,25 @@ class GameScene: SKScene {
         let addCritter = SKAction.runBlock({
             [unowned self] in
             let critter = Critter()
-            let initPoint = CGPoint(x: self.frame.width/2,y: self.frame.width/2)
+            let initPoint = CGPoint(x: 0.0 , y: 650)
             critter.xScale = 0.01
             critter.yScale = 0.01
             critter.position = initPoint
-            let moveDown = SKAction.moveTo(CGPointMake(100, 0), duration: 10)
-            critter.runAction(moveDown)
+            
+            let pointTwo = CGPointMake(900, 650)
+            let pointThree = CGPointMake(900, 450)
+            let pointFour = CGPointMake(100, 450)
+            let pointFive = CGPointMake(100, 250)
+            let endPoint = CGPointMake(900, 250)
+            
+            let moveInitToTwo = SKAction.moveTo(pointTwo, duration: critter.walkSpeed)
+            let moveToThree = SKAction.moveTo(pointThree, duration: critter.walkSpeed / 2.5)
+            let moveToFour = SKAction.moveTo(pointFour, duration: critter.walkSpeed)
+            let moveToFive = SKAction.moveTo(pointFive, duration: critter.walkSpeed / 2.5)
+            let moveToEnd = SKAction.moveTo(endPoint, duration: critter.walkSpeed)
+            
+            let moveSequence = SKAction.sequence([moveInitToTwo, moveToThree, moveToFour, moveToFive, moveToEnd])
+            critter.runAction(moveSequence)
             self.addChild(critter)
         })
         
