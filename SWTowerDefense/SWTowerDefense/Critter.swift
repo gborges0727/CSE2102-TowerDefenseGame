@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-@available(iOS 9.0, *)
+
 class Critter: SKSpriteNode {
     // var scene: SKScene!
     let walkSpeed = 1.0

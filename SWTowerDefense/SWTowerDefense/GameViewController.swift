@@ -10,7 +10,6 @@ import UIKit
 import SpriteKit
 
 extension SKNode {
-    @available(iOS 9.0, *)
     class func unarchiveFromFile(file : String) -> SKNode? {
         if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
             let sceneData = try! NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
@@ -26,7 +25,6 @@ extension SKNode {
     }
 }
 
-@available(iOS 9.0, *)
 class GameViewController: UIViewController {
 
     override func viewDidLoad() {

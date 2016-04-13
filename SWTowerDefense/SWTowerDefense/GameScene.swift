@@ -8,7 +8,6 @@
 
 import SpriteKit
 
-@available(iOS 9.0, *)
 class GameScene: SKScene {
     
     var critters = [Critter]()

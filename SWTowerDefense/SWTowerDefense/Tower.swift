@@ -9,7 +9,6 @@
 import GameplayKit
 import SpriteKit
 
-@available(iOS 9.0, *)
 class Tower: SKSpriteNode {
     
     // var scene = SKScene() NOT sure if needed?
