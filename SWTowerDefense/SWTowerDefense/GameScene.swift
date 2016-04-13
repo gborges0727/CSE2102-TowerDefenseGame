@@ -16,12 +16,11 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
+        let backgroundMap = SKSpriteNode(imageNamed: "baseBackground")
+        backgroundMap.position = CGPointMake(self.size.width/2, self.size.height/2)
+        backgroundMap.size = self.frame.size
+        self.addChild(backgroundMap)
         
-        //self.addChild(myLabel)
         self.backgroundColor = SKColor.whiteColor()
         loadCritters()
     }
