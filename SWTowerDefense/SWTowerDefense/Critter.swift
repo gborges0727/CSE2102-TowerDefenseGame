@@ -15,7 +15,6 @@ class Critter: SKSpriteNode {
     let walkSpeed = 10.0
     let lifeHealth = 50
     var nextPoint = 0
-    var travelPoint = TravelPoint()
     
     init() {
         let texture = SKTexture(imageNamed: "redSquare")
@@ -34,7 +33,7 @@ class Critter: SKSpriteNode {
         // Function to calculate the damage taken by a tower
     }
     
-    func changeTravelPoint(currentPoint: TravelPoint) {
+    func changeTravelPoint() {
         // Function to change the current travel point to the next point
     }
 }

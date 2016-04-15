@@ -150,4 +150,22 @@ class GameScene: SKScene {
         }
     }
     
+    func updateTowerTarget() {
+        // Run Loop for each Tower
+            // Check if Tower does have target
+                // If yes, is it in range?
+                    // Yes = Continue attacking.
+                    // No = Search for new Target
+        
+    }
+    
+    func findCritterForTower() {
+        // Run Loop for each Tower
+            // Sub-Loop in Enemies
+                // For all enemies within target range: 
+                    // Attack the one closest ****** THIS CODE CAN BE MODIFIED AS A GAME SETTING LATER******
+            // If no enemies are within tower Range
+                // Do nothing
+    }
+    
 }
