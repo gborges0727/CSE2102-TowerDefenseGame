@@ -16,6 +16,7 @@ class GameScene: SKScene {
     var cash = 1000
     let livesLabel = SKLabelNode(fontNamed: "Arial")
     let cashLabel = SKLabelNode(fontNamed: "Arial")
+    let endPoint = CGPoint(x: 900, y: 150)
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -61,14 +62,8 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        for critter in critters {
-            if (critter.position == CGPoint(x: 900, y: 150)) {
-                critter.removeFromParent()
-                updateLabels(cashChange: 0, livesChange: 1)
-                let i = critters.indexOf(critter)
-                critters.removeAtIndex(i!)
-            }
-        }
+        critterIsAtEndCheck()
+        
     }
     
     func loadCritters() {
@@ -89,13 +84,12 @@ class GameScene: SKScene {
             let pointThree = CGPointMake(900, 350)
             let pointFour = CGPointMake(100, 350)
             let pointFive = CGPointMake(100, 150)
-            let endPoint = CGPointMake(900, 150)
             
             let moveInitToTwo = SKAction.moveTo(pointTwo, duration: critter.walkSpeed)
             let moveToThree = SKAction.moveTo(pointThree, duration: critter.walkSpeed / 2.5)
             let moveToFour = SKAction.moveTo(pointFour, duration: critter.walkSpeed)
             let moveToFive = SKAction.moveTo(pointFive, duration: critter.walkSpeed / 2.5)
-            let moveToEnd = SKAction.moveTo(endPoint, duration: critter.walkSpeed)
+            let moveToEnd = SKAction.moveTo(self.endPoint, duration: critter.walkSpeed)
             
             let moveSequence = SKAction.sequence([moveInitToTwo, moveToThree, moveToFour, moveToFive, moveToEnd])
             critter.runAction(moveSequence)
@@ -110,7 +104,7 @@ class GameScene: SKScene {
     
     func towerCritterCollision(towerPoint: CGPoint, towerRange: CGFloat,
                                critterPoint: CGPoint, collisionRadius: CGFloat) -> Bool {
-        // This function is called by the tower to test whether an enemy exits in
+        // This function is called by the tower to test whether a critter exits in
         // its attack range!
         
         let xDiff = towerPoint.x - critterPoint.x
@@ -125,7 +119,7 @@ class GameScene: SKScene {
     }
     
     func initTravelPoints() {
-        // Function to initialize the Enemy travel points
+        // Function to initialize the Critter travel points
         // Can be modified to work differently depending on the background "map"
     }
     
@@ -144,4 +138,16 @@ class GameScene: SKScene {
         cashLabel.text = "Cash: " + String(cash)
         livesLabel.text = "Lives: " + String(lives)
     }
+    
+    func critterIsAtEndCheck() {
+        for critter in critters {
+            if (critter.position == endPoint) {
+                critter.removeFromParent()
+                updateLabels(cashChange: 0, livesChange: 1)
+                let i = critters.indexOf(critter)
+                critters.removeAtIndex(i!)
+            }
+        }
+    }
+    
 }
