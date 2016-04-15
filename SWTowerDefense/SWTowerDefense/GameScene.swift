@@ -17,6 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var critters = [Critter]()
     var towers = [Tower]()
     var bullets = [Bullet]()
+    var shootTimer = NSTimer()
     var lives = 100
     var cash = 1000
     let livesLabel = SKLabelNode(fontNamed: "Arial")
@@ -64,7 +65,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 tower.position = location
                 addChild(tower)
                 towers.append(tower)
-                updateLabels(cashChange: tower.towerCost, livesChange: 0)
+                updateLabels(cashChange: -tower.towerCost, livesChange: 0)
                 updateTowersTarget()
             }
         }
@@ -87,6 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody.health -= 50
             if (firstBody.health <= 0) {
                 firstBody.removeFromParent()
+                updateLabels(cashChange: 50, livesChange: 0)
             }
         }
     }
@@ -145,8 +147,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func updateLabels(cashChange cashChange: Int, livesChange: Int) {
-        cash = cash - cashChange
-        lives = lives - livesChange
+        cash = cash + cashChange
+        lives = lives + livesChange
         cashLabel.text = "Cash: " + String(cash)
         livesLabel.text = "Lives: " + String(lives)
     }
@@ -155,15 +157,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for critter in critters {
             if (critter.position == endPoint) {
                 critter.removeFromParent()
-                updateLabels(cashChange: 0, livesChange: 1)
+                updateLabels(cashChange: 0, livesChange: -1)
                 let i = critters.indexOf(critter)
                 critters.removeAtIndex(i!)
             }
         }
-    }
-    
-    func applyBulletDamage() {
-        // Function to apply the damage of the traveling bullet
     }
     
     // I'm almost 100% sure the below code is VERY innefficient...
@@ -212,6 +210,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         else {
             tower.currentEnemy = currentClosestCritter
             tower.canFire = true
+            //shootTimer = NSTimer.scheduledTimerWithTimeInterval(tower.fireRate, target: self, selector: Selector(fireTower(tower)), userInfo: nil, repeats: tower.canFire)
             fireTower(tower)
         }
     }
