@@ -10,7 +10,10 @@ import SpriteKit
 
 class Bullet: SKSpriteNode {
     
-    let travelSpeed = 10
+    let travelSpeed = 0.5
+    var critterTarget: Critter!
+    var damageDone: Int!
+    var destinationPoint: CGPoint!
     
     init() {
         let texture = SKTexture(imageNamed: "bullet.png")

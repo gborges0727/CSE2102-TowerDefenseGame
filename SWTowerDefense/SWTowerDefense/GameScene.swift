@@ -12,6 +12,7 @@ class GameScene: SKScene {
     
     var critters = [Critter]()
     var towers = [Tower]()
+    var bullets = [Bullet]()
     var lives = 100
     var cash = 1000
     let livesLabel = SKLabelNode(fontNamed: "Arial")
@@ -25,14 +26,14 @@ class GameScene: SKScene {
         backgroundMap.size = CGSize(width: 512, height: 384)
         self.addChild(backgroundMap)
         
-        self.backgroundColor = SKColor.whiteColor()
+        self.backgroundColor = SKColor.blackColor()
         livesLabel.fontSize = 30
         livesLabel.position = CGPointMake(100, 625)
-        livesLabel.fontColor = UIColor.blackColor()
+        livesLabel.fontColor = UIColor.whiteColor()
         
         cashLabel.fontSize = 30
         cashLabel.position = CGPointMake(300, 625)
-        cashLabel.fontColor = UIColor.blackColor()
+        cashLabel.fontColor = UIColor.whiteColor()
         
         updateLabels(cashChange: 0, livesChange: 0)
         
@@ -56,6 +57,7 @@ class GameScene: SKScene {
                 addChild(tower)
                 towers.append(tower)
                 updateLabels(cashChange: tower.towerCost, livesChange: 0)
+                updateTowersTarget()
             }
         }
     }
@@ -64,6 +66,7 @@ class GameScene: SKScene {
         /* Called before each frame is rendered */
         critterIsAtEndCheck()
         updateTowersTarget()
+        //bulletsCheck()
     }
     
     func loadCritters() {
@@ -150,33 +153,57 @@ class GameScene: SKScene {
         }
     }
     
+    func applyBulletDamage() {
+        // Function to apply the damage of the traveling bullet
+    }
+    
+    // I'm almost 100% sure the below code is VERY innefficient...
+    
     func updateTowersTarget() {
         // Run Loop for each tower
         for tower in towers {
             // Check if Tower doesn't have target
-            if tower.currentEnemy != nil {
+            if (tower.currentEnemy != nil) {
                 let distance = calcDistance(firstPoint: tower.position, secondPoint: tower.currentEnemy.position)
                 if (distance < tower.attackRange) {
-                    continue
+                    //tower.updatePositions()
                 }
                 else {
+                    tower.canFire = false
                     findCritterForTower(tower)
                 }
             }
             // Tower doesn't have an enemy :(
             else {
                 findCritterForTower(tower)
+                if (tower.currentEnemy == nil) {
+                    tower.canFire = false
+                }
             }
         }
     }
     
     func findCritterForTower(tower: Tower) {
-        // Run Loop for each Tower
-            // Sub-Loop in Enemies
-                // For all enemies within target range: 
-                    // Attack the one closest ****** THIS CODE CAN BE MODIFIED AS A GAME SETTING LATER******
-            // If no enemies are within tower Range
-                // Do nothing
+        var currentClosestCritter = Critter()
+        var currentClosestCritterDistance = CGFloat(-1)
+        
+        // Sub-Loop in Critters - always targets closest critter
+        for critter in critters {
+            let critterDistance = calcDistance(firstPoint: critter.position, secondPoint: tower.position)
+            if (critterDistance < tower.attackRange && critterDistance > currentClosestCritterDistance) {
+                currentClosestCritter = critter
+                currentClosestCritterDistance = critterDistance
+            }
+        }
+        
+        if (currentClosestCritterDistance == CGFloat(-1)) {
+            return
+        }
+        else {
+            tower.currentEnemy = currentClosestCritter
+            tower.canFire = true
+            tower.isFiring()
+        }
     }
     
     
