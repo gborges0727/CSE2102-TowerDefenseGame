@@ -19,21 +19,21 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        //let backgroundMap = SKSpriteNode(imageNamed: "baseBackground")
-        //backgroundMap.position = CGPointMake(self.size.width/2, self.size.height/2)
-        //backgroundMap.size = self.frame.size
-        //self.addChild(backgroundMap)
+        let backgroundMap = SKSpriteNode(imageNamed: "line")
+        backgroundMap.position = CGPointMake(self.size.width/2, self.size.height/2)
+        backgroundMap.size = CGSize(width: 512, height: 384)
+        self.addChild(backgroundMap)
         
         self.backgroundColor = SKColor.whiteColor()
-        //let livesLabel = SKLabelNode(fontNamed: "Arial")
         livesLabel.fontSize = 30
         livesLabel.position = CGPointMake(100, 625)
         livesLabel.fontColor = UIColor.blackColor()
-        //let cashLabel = SKLabelNode(fontNamed: "Arial")
+        
         cashLabel.fontSize = 30
         cashLabel.position = CGPointMake(300, 625)
         cashLabel.fontColor = UIColor.blackColor()
-        updateLabels(0, livesChange: 0)
+        
+        updateLabels(cashChange: 0, livesChange: 0)
         
         self.addChild(livesLabel)
         self.addChild(cashLabel)
@@ -43,19 +43,18 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
-        for touch in (touches ) {
+        for touch in (touches) {
             let location = touch.locationInNode(self)
             
             let tower = Tower()
             if (canAffordTower(tower.towerCost)) {
-                //let towerSprite = SKSpriteNode(imageNamed:"blueSquare")
                 
                 tower.xScale = 0.1
                 tower.yScale = 0.1
                 tower.position = location
                 addChild(tower)
                 towers.append(tower)
-                updateLabels(tower.towerCost, livesChange: 0)
+                updateLabels(cashChange: tower.towerCost, livesChange: 0)
             }
         }
     }
@@ -65,12 +64,11 @@ class GameScene: SKScene {
         for critter in critters {
             if (critter.position == CGPoint(x: 900, y: 150)) {
                 critter.removeFromParent()
-                updateLabels(0, livesChange: 1)
+                updateLabels(cashChange: 0, livesChange: 1)
                 let i = critters.indexOf(critter)
                 critters.removeAtIndex(i!)
             }
         }
-        // Update 
     }
     
     func loadCritters() {
@@ -140,7 +138,7 @@ class GameScene: SKScene {
         }
     }
     
-    func updateLabels(cashChange: Int, livesChange: Int) {
+    func updateLabels(cashChange cashChange: Int, livesChange: Int) {
         cash = cash - cashChange
         lives = lives - livesChange
         cashLabel.text = "Cash: " + String(cash)
