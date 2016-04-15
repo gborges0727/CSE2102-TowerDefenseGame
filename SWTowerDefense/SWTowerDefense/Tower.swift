@@ -13,7 +13,7 @@ class Tower: SKSpriteNode {
     
     // var scene = SKScene() NOT sure if needed?
     var sprite: SKSpriteNode!
-    var attackRange = 10
+    var attackRange = CGFloat(10)
     var damage = 10
     var fireRate = 1
     var towerCost = 100

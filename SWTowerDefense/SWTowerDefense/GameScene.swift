@@ -63,7 +63,7 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         critterIsAtEndCheck()
-        
+        updateTowersTarget()
     }
     
     func loadCritters() {
@@ -150,16 +150,27 @@ class GameScene: SKScene {
         }
     }
     
-    func updateTowerTarget() {
-        // Run Loop for each Tower
-            // Check if Tower does have target
-                // If yes, is it in range?
-                    // Yes = Continue attacking.
-                    // No = Search for new Target
-        
+    func updateTowersTarget() {
+        // Run Loop for each tower
+        for tower in towers {
+            // Check if Tower doesn't have target
+            if tower.currentEnemy != nil {
+                let distance = calcDistance(firstPoint: tower.position, secondPoint: tower.currentEnemy.position)
+                if (distance < tower.attackRange) {
+                    continue
+                }
+                else {
+                    findCritterForTower(tower)
+                }
+            }
+            // Tower doesn't have an enemy :(
+            else {
+                findCritterForTower(tower)
+            }
+        }
     }
     
-    func findCritterForTower() {
+    func findCritterForTower(tower: Tower) {
         // Run Loop for each Tower
             // Sub-Loop in Enemies
                 // For all enemies within target range: 
@@ -168,4 +179,10 @@ class GameScene: SKScene {
                 // Do nothing
     }
     
+    
+    func calcDistance(firstPoint firstPoint: CGPoint, secondPoint: CGPoint) -> CGFloat {
+        let xDist = (secondPoint.x - firstPoint.x)
+        let yDist = (secondPoint.y - firstPoint.y)
+        return sqrt(xDist * xDist + yDist * yDist)
+    }
 }
