@@ -13,7 +13,7 @@ import GameplayKit
 class Critter: SKSpriteNode {
     // var scene: SKScene!
     let walkSpeed = 10.0
-    let lifeHealth = 50
+    var health = 50
     var nextPoint = 0
     
     init() {

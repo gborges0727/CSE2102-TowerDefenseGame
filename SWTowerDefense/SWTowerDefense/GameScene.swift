@@ -8,7 +8,11 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
+    
+    let critterCategory = UInt32(0x1)
+    let bulletCategory = UInt32(0x1 << 1)
+    let sceneCategory = UInt32(0x1 << 2)
     
     var critters = [Critter]()
     var towers = [Tower]()
@@ -21,6 +25,10 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        self.physicsWorld.gravity = CGVectorMake(0, 0)
+        self.physicsWorld.contactDelegate = self
+        
+        
         let backgroundMap = SKSpriteNode(imageNamed: "line")
         backgroundMap.position = CGPointMake(self.size.width/2, self.size.height/2)
         backgroundMap.size = CGSize(width: 512, height: 384)
@@ -70,6 +78,17 @@ class GameScene: SKScene {
         //bulletsCheck()
     }
     
+    func didBeginContact(contact: SKPhysicsContact) {
+        print ("didbeginContact run")
+        let firstBody = contact.bodyA.node as! Critter
+        let secondBody = contact.bodyB.node as! Bullet
+        
+        if (contact.bodyA.categoryBitMask == critterCategory) && (contact.bodyB.categoryBitMask == bulletCategory ) {
+            secondBody.removeFromParent()
+            firstBody.health -= 50
+        }
+    }
+    
     func loadCritters() {
         // Create content to handle waves && Adjust enemy difficulty based on wave number
         let spawnInterval = 1.0; let critterAmount = 10
@@ -83,6 +102,9 @@ class GameScene: SKScene {
             critter.xScale = 0.01
             critter.yScale = 0.01
             critter.position = initPoint
+            critter.physicsBody = SKPhysicsBody(rectangleOfSize: critter.size)
+            critter.physicsBody!.dynamic = false
+            critter.physicsBody!.categoryBitMask = self.critterCategory
             
             let pointTwo = CGPointMake(900, 550)
             let pointThree = CGPointMake(900, 350)
@@ -237,12 +259,18 @@ class GameScene: SKScene {
         if(tower.canFire) {
             
             let bullet = Bullet()
-            let initPoint = CGPointMake(tower.position.x / 2, tower.position.y / 2)
+            let initPoint = tower.position
             bullet.xScale = 0.005
             bullet.yScale = 0.005
             bullet.position = initPoint
             bullet.critterTarget = tower.currentEnemy
             bullet.destinationPoint = bullet.critterTarget.position
+            bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.size.width/2)
+            //bullet.physicsBody!.dynamic = false
+            bullet.physicsBody!.categoryBitMask = self.bulletCategory
+            bullet.physicsBody!.usesPreciseCollisionDetection = true
+            bullet.physicsBody!.collisionBitMask = bulletCategory | critterCategory
+            bullet.physicsBody!.contactTestBitMask = bulletCategory | critterCategory
                 
             self.addChild(bullet)
             self.bullets.append(bullet)
