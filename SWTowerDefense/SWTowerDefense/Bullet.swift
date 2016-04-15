@@ -10,10 +10,11 @@ import SpriteKit
 
 class Bullet: SKSpriteNode {
     
-    let travelSpeed = 0.5
+    let travelSpeed = CGFloat(1)
     var critterTarget: Critter!
     var damageDone: Int!
     var destinationPoint: CGPoint!
+    var rotationAngle: CGFloat!
     
     init() {
         let texture = SKTexture(imageNamed: "bullet.png")

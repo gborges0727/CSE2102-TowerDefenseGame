@@ -64,6 +64,7 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        updateBulletPositions()
         critterIsAtEndCheck()
         updateTowersTarget()
         //bulletsCheck()
@@ -162,11 +163,12 @@ class GameScene: SKScene {
     func updateTowersTarget() {
         // Run Loop for each tower
         for tower in towers {
+            updateBulletPositions()
             // Check if Tower doesn't have target
             if (tower.currentEnemy != nil) {
                 let distance = calcDistance(firstPoint: tower.position, secondPoint: tower.currentEnemy.position)
                 if (distance < tower.attackRange) {
-                    //tower.updatePositions()
+        
                 }
                 else {
                     tower.canFire = false
@@ -202,10 +204,53 @@ class GameScene: SKScene {
         else {
             tower.currentEnemy = currentClosestCritter
             tower.canFire = true
-            tower.isFiring()
+            fireTower(tower)
         }
     }
     
+    func updateBulletPositions() {
+        for bullet in bullets {
+            if (bullet.position == bullet.critterTarget.position) {
+                bullet.removeFromParent()
+                let i = bullets.indexOf(bullet)
+                bullets.removeAtIndex(i!)
+            }
+            else {
+                let location = bullet.critterTarget.position
+                
+                let dx = location.x - bullet.position.x
+                let dy = location.y - bullet.position.y
+                let angle = atan2(dy, dx)
+                
+                bullet.rotationAngle = angle
+                
+                let vx = cos(angle) * bullet.travelSpeed
+                let vy = sin(angle) * bullet.travelSpeed
+                
+                bullet.position.x += vx
+                bullet.position.y += vy
+            }
+        }
+    }
+    
+    func fireTower(tower: Tower) {
+        if(tower.canFire) {
+            
+            let bullet = Bullet()
+            let initPoint = CGPointMake(tower.position.x / 2, tower.position.y / 2)
+            bullet.xScale = 0.005
+            bullet.yScale = 0.005
+            bullet.position = initPoint
+            bullet.critterTarget = tower.currentEnemy
+            bullet.destinationPoint = bullet.critterTarget.position
+                
+            self.addChild(bullet)
+            self.bullets.append(bullet)
+        }
+        else {
+            updateBulletPositions()
+        }
+    }
     
     func calcDistance(firstPoint firstPoint: CGPoint, secondPoint: CGPoint) -> CGFloat {
         let xDist = (secondPoint.x - firstPoint.x)
