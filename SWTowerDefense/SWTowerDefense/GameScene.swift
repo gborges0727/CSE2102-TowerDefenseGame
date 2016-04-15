@@ -79,13 +79,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
-        print ("didbeginContact run")
         let firstBody = contact.bodyA.node as! Critter
         let secondBody = contact.bodyB.node as! Bullet
         
         if (contact.bodyA.categoryBitMask == critterCategory) && (contact.bodyB.categoryBitMask == bulletCategory ) {
             secondBody.removeFromParent()
             firstBody.health -= 50
+            if (firstBody.health <= 0) {
+                firstBody.removeFromParent()
+            }
         }
     }
     
@@ -126,22 +128,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let loadAction = SKAction.sequence([delay, addCritter])
         
         runAction(SKAction.repeatAction(loadAction, count: critterAmount))
-    }
-    
-    func towerCritterCollision(towerPoint: CGPoint, towerRange: CGFloat,
-                               critterPoint: CGPoint, collisionRadius: CGFloat) -> Bool {
-        // This function is called by the tower to test whether a critter exits in
-        // its attack range!
-        
-        let xDiff = towerPoint.x - critterPoint.x
-        let yDiff = towerPoint.y - critterPoint.y
-        let distance = sqrt(xDiff * xDiff + yDiff * yDiff)
-        
-        if (distance <= towerRange + collisionRadius) {
-            return true
-        }
-        
-        return false
     }
     
     func initTravelPoints() {
@@ -266,7 +252,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bullet.critterTarget = tower.currentEnemy
             bullet.destinationPoint = bullet.critterTarget.position
             bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.size.width/2)
-            //bullet.physicsBody!.dynamic = false
             bullet.physicsBody!.categoryBitMask = self.bulletCategory
             bullet.physicsBody!.usesPreciseCollisionDetection = true
             bullet.physicsBody!.collisionBitMask = bulletCategory | critterCategory
