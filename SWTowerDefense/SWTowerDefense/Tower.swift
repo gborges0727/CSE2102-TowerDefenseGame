@@ -22,7 +22,7 @@ class Tower: SKSpriteNode {
     var bullets = [Bullet]()
     
     init() {
-        let texture = SKTexture(imageNamed: "blueSquare")
+        let texture = SKTexture(imageNamed: "towerY")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
     }
     

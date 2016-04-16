@@ -17,7 +17,7 @@ class Critter: SKSpriteNode {
     var nextPoint = 0
     
     init() {
-        let texture = SKTexture(imageNamed: "redSquare")
+        let texture = SKTexture(imageNamed: "stormtrooper")
         super.init(texture: texture, color: SKColor.clearColor(), size: texture.size())
     }
     

@@ -30,25 +30,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         
         
-        let backgroundMap = SKSpriteNode(imageNamed: "line")
+        let backgroundMap = SKSpriteNode(imageNamed: "background")
         backgroundMap.position = CGPointMake(self.size.width/2, self.size.height/2)
-        backgroundMap.size = CGSize(width: 512, height: 384)
+        backgroundMap.size = self.size
+        backgroundMap.zPosition = 0
         self.addChild(backgroundMap)
         
-        self.backgroundColor = SKColor.blackColor()
+        //self.backgroundColor = SKColor.greenColor()
         livesLabel.fontSize = 30
-        livesLabel.position = CGPointMake(100, 625)
-        livesLabel.fontColor = UIColor.whiteColor()
+        livesLabel.position = CGPointMake(100, 100)
+        livesLabel.fontColor = UIColor.blackColor()
+        livesLabel.zPosition = 1
         
         cashLabel.fontSize = 30
-        cashLabel.position = CGPointMake(300, 625)
-        cashLabel.fontColor = UIColor.whiteColor()
+        cashLabel.position = CGPointMake(100, 200)
+        cashLabel.fontColor = UIColor.blackColor()
+        cashLabel.zPosition = 1
         
         updateLabels(cashChange: 0, livesChange: 0)
+        
+        let endPointNode = SKSpriteNode()
+        endPointNode.position = endPoint
+        endPointNode.size = CGSize(width: 1, height: 1)
+        
         
         self.addChild(livesLabel)
         self.addChild(cashLabel)
         loadCritters()
+        print(self.size.height)
+        print(self.size.width)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -60,9 +70,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let tower = Tower()
             if (canAffordTower(tower.towerCost)) {
                 
-                tower.xScale = 0.1
-                tower.yScale = 0.1
+                tower.xScale = 0.5
+                tower.yScale = 0.5
                 tower.position = location
+                tower.zPosition = 1
                 addChild(tower)
                 towers.append(tower)
                 updateLabels(cashChange: -tower.towerCost, livesChange: 0)
@@ -103,12 +114,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             [unowned self] in
             let critter = Critter()
             let initPoint = CGPoint(x: 0.0 , y: 550)
-            critter.xScale = 0.01
-            critter.yScale = 0.01
+            //critter.xScale = 0.01
+            //critter.yScale = 0.01
             critter.position = initPoint
             critter.physicsBody = SKPhysicsBody(rectangleOfSize: critter.size)
             critter.physicsBody!.dynamic = false
             critter.physicsBody!.categoryBitMask = self.critterCategory
+            critter.zPosition = 1
             
             let pointTwo = CGPointMake(900, 550)
             let pointThree = CGPointMake(900, 350)
@@ -156,6 +168,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func critterIsAtEndCheck() {
         for critter in critters {
             if (critter.position == endPoint) {
+                print("If statment run")
                 critter.removeFromParent()
                 updateLabels(cashChange: 0, livesChange: -1)
                 let i = critters.indexOf(critter)
@@ -248,6 +261,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bullet.xScale = 0.005
             bullet.yScale = 0.005
             bullet.position = initPoint
+            bullet.zPosition = 1
             bullet.critterTarget = tower.currentEnemy
             bullet.destinationPoint = bullet.critterTarget.position
             bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.size.width/2)
