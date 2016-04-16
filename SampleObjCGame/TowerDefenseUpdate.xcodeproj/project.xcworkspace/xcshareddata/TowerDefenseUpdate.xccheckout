@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>E859FF31-2177-4D03-8950-4D46CBD9E030</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>TowerDefenseUpdate</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>B8E1696253B2E3BBBB300A7DC0ABB94F622108DE</key>
 		<string>https://github.com/gborges0727/CSE2102-TowerDefenseGame.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SampleObjCGame/TowerDefenseUpdate.xcodeproj/project.xcworkspace</string>
+	<string>SampleObjCGame/TowerDefenseUpdate.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>B8E1696253B2E3BBBB300A7DC0ABB94F622108DE</key>
