@@ -85,17 +85,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        if (critters.count > 0) {
-            print ("critter position: ")
-            print(critters[0].position)
-            //print(critters[0].position.y)
-        }
-        print("Endpoint:")
-        print(endPoint)
+        
         updateBulletPositions()
         critterIsAtEndCheck()
         updateTowersTarget()
-        killExcessBullets()
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -107,10 +100,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody.health -= secondBody.damageDone
             if (firstBody.health <= 0) {
                 firstBody.removeFromParent()
+                let critterIndex = critters.indexOf(firstBody)
+                critters.removeAtIndex(critterIndex!)
+                
                 updateLabels(cashChange: 50, livesChange: 0)
                 secondBody.originTower.currentEnemy = nil
             }
             secondBody.removeFromParent()
+            // add code to remove from array
         }
     }
     
@@ -160,11 +157,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let loadAction = SKAction.sequence([delay, addCritter])
         
         runAction(SKAction.repeatAction(loadAction, count: critterAmount))
-    }
-    
-    func initTravelPoints() {
-        // Function to initialize the Critter travel points
-        // Can be modified to work differently depending on the background "map"
     }
     
     func canAffordTower(cost: Int) -> Bool {
@@ -217,7 +209,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             // Tower doesn't have an enemy :(
             else {
-                print("This function has run :) ")
                 findCritterForTower(tower)
                 if (tower.currentEnemy == nil) {
                     tower.canFire = false
@@ -252,7 +243,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func updateBulletPositions() {
         for bullet in bullets {
-            if (bullet.position == bullet.critterTarget.position) {
+            let bulletsCritter = bullet.critterTarget
+            let critterExists = critters.indexOf(bulletsCritter)
+            
+            if (critterExists == nil) {
                 bullet.removeFromParent()
                 let i = bullets.indexOf(bullet)
                 bullets.removeAtIndex(i!)
@@ -313,16 +307,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     	if (cash < tower.upgradeCost){
     		tower.upgradeCost = tower.upgradeCost * 2
     		tower.level += 1
-        }
-    }
-    
-    func killExcessBullets() {
-        for bullet in bullets {
-            if (bullet.hasActions() == false) {
-                bullet.removeFromParent()
-            }
-            let bulletIndex = bullets.indexOf(bullet)
-            bullets.removeAtIndex(bulletIndex!)
         }
     }
 }
