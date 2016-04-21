@@ -304,4 +304,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let yDist = (secondPoint.y - firstPoint.y)
         return sqrt(xDist * xDist + yDist * yDist)
     }
+    
+    	
+    func upgradetower(){
+    	if (cash<upgradeCost){
+    		tower.upgradeCost ++
+    		tower.level ++
+    }
 }
