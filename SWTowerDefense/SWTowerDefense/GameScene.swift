@@ -285,9 +285,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     	
-    Func upgradetower(){
-    	If (cash<upgradeCost){
-    		Tower.upgradeCost ++
-    		Tower.level ++
+    func upgradetower(){
+    	if (cash<upgradeCost){
+    		tower.upgradeCost ++
+    		tower.level ++
     }
 }
