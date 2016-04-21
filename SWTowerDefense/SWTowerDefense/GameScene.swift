@@ -22,13 +22,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var cash = 1000
     let livesLabel = SKLabelNode(fontNamed: "Arial")
     let cashLabel = SKLabelNode(fontNamed: "Arial")
-    let endPoint = CGPoint(x: 900, y: 150)
+    var endPoint = CGPointMake(667.0,232.625)
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         self.physicsWorld.contactDelegate = self
-        
+        endPoint.x = self.size.width * 1
+        endPoint.y = self.size.height * (0.703)
         
         let backgroundMap = SKSpriteNode(imageNamed: "background")
         backgroundMap.position = CGPointMake(self.size.width/2, self.size.height/2)
@@ -84,10 +85,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        if (critters.count > 0) {
+            print ("critter position: ")
+            print(critters[0].position)
+            //print(critters[0].position.y)
+        }
+        print("Endpoint:")
+        print(endPoint)
         updateBulletPositions()
         critterIsAtEndCheck()
         updateTowersTarget()
-        //bulletsCheck()
+        
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -96,7 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if (contact.bodyA.categoryBitMask == critterCategory) && (contact.bodyB.categoryBitMask == bulletCategory ) {
             secondBody.removeFromParent()
-            firstBody.health -= 50
+            firstBody.health -= secondBody.damageDone
             if (firstBody.health <= 0) {
                 firstBody.removeFromParent()
                 updateLabels(cashChange: 50, livesChange: 0)
@@ -113,27 +121,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let addCritter = SKAction.runBlock({
             [unowned self] in
             let critter = Critter()
-            let initPoint = CGPoint(x: 0.0 , y: 550)
-            //critter.xScale = 0.01
-            //critter.yScale = 0.01
+            let initPoint = CGPoint(x: 0.0 , y: self.size.height * (0.71527))
+            critter.xScale = 0.5
+            critter.yScale = 0.5
             critter.position = initPoint
             critter.physicsBody = SKPhysicsBody(rectangleOfSize: critter.size)
             critter.physicsBody!.dynamic = false
             critter.physicsBody!.categoryBitMask = self.critterCategory
             critter.zPosition = 1
             
-            let pointTwo = CGPointMake(900, 550)
-            let pointThree = CGPointMake(900, 350)
-            let pointFour = CGPointMake(100, 350)
-            let pointFive = CGPointMake(100, 150)
+            let pointTwo = CGPointMake(self.size.width * (0.457), self.size.height * (0.71527))
+            let pointThree = CGPointMake(self.size.width * (0.457), self.size.height * (0.208))
+            let pointFour = CGPointMake(self.size.width * 0.239, self.size.height * 0.208)
+            let pointFive = CGPointMake(self.size.width * 0.239, self.size.height * 0.527)
+            let pointSix = CGPointMake(self.size.width * 0.1132,self.size.height * 0.527)
+            let pointSeven = CGPointMake(self.size.width * 0.1132,self.size.width * 0.0521)
+            let pointEight = CGPointMake(self.size.width * 0.862, self.size.width * 0.0521)
+            let pointNine = CGPointMake(self.size.width * 0.862,self.size.height * 0.703)
             
             let moveInitToTwo = SKAction.moveTo(pointTwo, duration: critter.walkSpeed)
             let moveToThree = SKAction.moveTo(pointThree, duration: critter.walkSpeed / 2.5)
             let moveToFour = SKAction.moveTo(pointFour, duration: critter.walkSpeed)
             let moveToFive = SKAction.moveTo(pointFive, duration: critter.walkSpeed / 2.5)
+            let moveToSix = SKAction.moveTo(pointSix, duration: critter.walkSpeed)
+            let moveToSeven = SKAction.moveTo(pointSeven, duration: critter.walkSpeed)
+            let moveToEight = SKAction.moveTo(pointEight, duration: critter.walkSpeed)
+            let moveToNine = SKAction.moveTo(pointNine, duration: critter.walkSpeed)
             let moveToEnd = SKAction.moveTo(self.endPoint, duration: critter.walkSpeed)
             
-            let moveSequence = SKAction.sequence([moveInitToTwo, moveToThree, moveToFour, moveToFive, moveToEnd])
+            let moveSequence = SKAction.sequence([moveInitToTwo, moveToThree, moveToFour, moveToFive, moveToSix, moveToSeven, moveToEight, moveToNine, moveToEnd])
             critter.runAction(moveSequence)
             self.addChild(critter)
             self.critters.append(critter)
@@ -167,7 +183,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func critterIsAtEndCheck() {
         for critter in critters {
-            if (critter.position == endPoint) {
+            if (critter.hasActions() == false) {
                 print("If statment run")
                 critter.removeFromParent()
                 updateLabels(cashChange: 0, livesChange: -1)
@@ -184,6 +200,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for tower in towers {
             updateBulletPositions()
             // Check if Tower doesn't have target
+            let currentEnemy = tower.currentEnemy
+            
+            
             if (tower.currentEnemy != nil) {
                 let distance = calcDistance(firstPoint: tower.position, secondPoint: tower.currentEnemy.position)
                 if (distance < tower.attackRange) {
@@ -196,6 +215,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             // Tower doesn't have an enemy :(
             else {
+                print("This function has run :) ")
                 findCritterForTower(tower)
                 if (tower.currentEnemy == nil) {
                     tower.canFire = false
@@ -264,6 +284,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bullet.zPosition = 1
             bullet.critterTarget = tower.currentEnemy
             bullet.destinationPoint = bullet.critterTarget.position
+            bullet.damageDone = tower.damage
             bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.size.width/2)
             bullet.physicsBody!.categoryBitMask = self.bulletCategory
             bullet.physicsBody!.usesPreciseCollisionDetection = true
