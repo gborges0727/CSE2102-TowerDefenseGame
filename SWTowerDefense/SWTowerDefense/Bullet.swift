@@ -15,6 +15,7 @@ class Bullet: SKSpriteNode {
     var damageDone: Int!
     var destinationPoint: CGPoint!
     var rotationAngle: CGFloat!
+    var originTower: Tower!
     
     init() {
         let texture = SKTexture(imageNamed: "bullet.png")

@@ -95,7 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         updateBulletPositions()
         critterIsAtEndCheck()
         updateTowersTarget()
-        
+        killExcessBullets()
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -103,12 +103,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let secondBody = contact.bodyB.node as! Bullet
         
         if (contact.bodyA.categoryBitMask == critterCategory) && (contact.bodyB.categoryBitMask == bulletCategory ) {
-            secondBody.removeFromParent()
+            
             firstBody.health -= secondBody.damageDone
             if (firstBody.health <= 0) {
                 firstBody.removeFromParent()
                 updateLabels(cashChange: 50, livesChange: 0)
+                secondBody.originTower.currentEnemy = nil
             }
+            secondBody.removeFromParent()
         }
     }
     
@@ -282,6 +284,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bullet.yScale = 0.005
             bullet.position = initPoint
             bullet.zPosition = 1
+            bullet.originTower = tower
             bullet.critterTarget = tower.currentEnemy
             bullet.destinationPoint = bullet.critterTarget.position
             bullet.damageDone = tower.damage
@@ -306,9 +309,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     	
-    func upgradetower(){
-    	if (cash<upgradeCost){
-    		tower.upgradeCost ++
-    		tower.level ++
+    func upgradetower(tower: Tower){
+    	if (cash < tower.upgradeCost){
+    		tower.upgradeCost = tower.upgradeCost * 2
+    		tower.level += 1
+        }
+    }
+    
+    func killExcessBullets() {
+        for bullet in bullets {
+            if (bullet.hasActions() == false) {
+                bullet.removeFromParent()
+            }
+            let bulletIndex = bullets.indexOf(bullet)
+            bullets.removeAtIndex(bulletIndex!)
+        }
     }
 }
