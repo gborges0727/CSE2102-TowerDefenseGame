@@ -21,14 +21,14 @@ class MenuScene: SKScene {
         self.addChild(background)
         
         playButton = SKSpriteNode(imageNamed: "button_play")
-        playButton.position = CGPointMake(200, 100)
-        playButton.size = CGSize(width: 100, height: 75)
+        playButton.position = CGPointMake(200, 135)
+        playButton.size = CGSize(width: 200, height: 175)
         playButton.zPosition = 1
         self.addChild(playButton)
         
         aboutButton = SKSpriteNode(imageNamed: "button_about")
-        aboutButton.position = CGPointMake(400, 100)
-        aboutButton.size = CGSize(width: 100, height: 75)
+        aboutButton.position = CGPointMake(self.size.width - 200, 135)
+        aboutButton.size = CGSize(width: 200, height: 175)
         aboutButton.zPosition = 1
         self.addChild(aboutButton)
     }
