@@ -15,9 +15,12 @@ class Tower: SKSpriteNode {
     var level = 1
     var sprite: SKSpriteNode!
     var attackRange = CGFloat(100)
-    var damage = 50
-    var fireRate = 0.5
+    var damage = 10
     var towerCost = 100
+    var fireRate = NSTimeInterval(0.5)
+    var lastFireTime = NSTimeInterval(0)
+    var lastUpdateTime = NSTimeInterval(0)
+    
 
     //var level = 1
     var upgradeCost = 100

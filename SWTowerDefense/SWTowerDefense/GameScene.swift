@@ -14,6 +14,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let bulletCategory = UInt32(0x1 << 1)
     let sceneCategory = UInt32(0x1 << 2)
     
+    
+    
     var critters = [Critter]()
     var towers = [Tower]()
     var bullets = [Bullet]()
@@ -83,8 +85,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
    
-    override func update(currentTime: CFTimeInterval) {
+    override func update(currentTime: NSTimeInterval) {
         /* Called before each frame is rendered */
+        
+        for tower in towers {
+            let calcDiff = currentTime - tower.lastUpdateTime
+            tower.lastUpdateTime = currentTime
+            
+            tower.lastFireTime += calcDiff
+            print ("currentime: ", currentTime)
+            print ("lastFireTime: ", tower.lastFireTime)
+            print ("lastUpdateTime: ", tower.lastUpdateTime)
+            print ("lastFireTime: ", tower.lastFireTime)
+        }
         
         updateBulletPositions()
         critterIsAtEndCheck()
@@ -92,22 +105,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
-        let firstBody = contact.bodyA.node as! Critter
-        let secondBody = contact.bodyB.node as! Bullet
+        let firstBody = contact.bodyA.node as? SKSpriteNode
+        let secondBody = contact.bodyB.node as? SKSpriteNode
         
-        if (contact.bodyA.categoryBitMask == critterCategory) && (contact.bodyB.categoryBitMask == bulletCategory ) {
-            
-            firstBody.health -= secondBody.damageDone
-            if (firstBody.health <= 0) {
-                firstBody.removeFromParent()
-                let critterIndex = critters.indexOf(firstBody)
-                critters.removeAtIndex(critterIndex!)
+        if (firstBody != nil && secondBody != nil) {
+            if (contact.bodyA.categoryBitMask == critterCategory) && (contact.bodyB.categoryBitMask == bulletCategory ) {
                 
-                updateLabels(cashChange: 50, livesChange: 0)
-                secondBody.originTower.currentEnemy = nil
+                let firstBody = firstBody as! Critter
+                let secondBody = secondBody as! Bullet
+                
+                // Calculates Damage & if health <= 0, deletes the Critter
+                
+                firstBody.health -= secondBody.damageDone
+                if (firstBody.health <= 0) {
+                    firstBody.removeFromParent()
+                    let critterIndex = critters.indexOf(firstBody)
+                    critters.removeAtIndex(critterIndex!)
+                    
+                    updateLabels(cashChange: 50, livesChange: 0)
+                    secondBody.originTower.currentEnemy = nil
+                }
+                
+                // Remove the bullet
+                
+                secondBody.removeFromParent()
+                let bulletIndex = bullets.indexOf(secondBody)
+                bullets.removeAtIndex(bulletIndex!)
             }
-            secondBody.removeFromParent()
-            // add code to remove from array
         }
     }
     
@@ -156,7 +180,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let loadAction = SKAction.sequence([delay, addCritter])
         
-        runAction(SKAction.repeatAction(loadAction, count: critterAmount))
+        //runAction(SKAction.repeatAction(loadAction, count: critterAmount))
+        runAction(SKAction.repeatActionForever(loadAction))
     }
     
     func canAffordTower(cost: Int) -> Bool {
@@ -187,6 +212,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    
     // I'm almost 100% sure the below code is VERY innefficient...
     
     func updateTowersTarget() {
@@ -194,13 +220,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for tower in towers {
             updateBulletPositions()
             // Check if Tower doesn't have target
-            let currentEnemy = tower.currentEnemy
+            //let currentEnemy = tower.currentEnemy
             
             
             if (tower.currentEnemy != nil) {
                 let distance = calcDistance(firstPoint: tower.position, secondPoint: tower.currentEnemy.position)
                 if (distance < tower.attackRange) {
-        
+                    if (tower.lastFireTime > tower.fireRate) {
+                        tower.lastFireTime = 0
+                        fireTower(tower)
+                    }
                 }
                 else {
                     tower.canFire = false
@@ -213,6 +242,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if (tower.currentEnemy == nil) {
                     tower.canFire = false
                 }
+                //fireTower(tower)
             }
         }
     }
@@ -236,8 +266,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         else {
             tower.currentEnemy = currentClosestCritter
             tower.canFire = true
-            //shootTimer = NSTimer.scheduledTimerWithTimeInterval(tower.fireRate, target: self, selector: Selector(fireTower(tower)), userInfo: nil, repeats: tower.canFire)
-            fireTower(tower)
+            
         }
     }
     
