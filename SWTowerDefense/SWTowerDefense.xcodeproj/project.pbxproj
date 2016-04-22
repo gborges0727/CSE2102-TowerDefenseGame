@@ -13,15 +13,24 @@
 		4510AFED1CB5A96100654387 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4510AFEC1CB5A96100654387 /* Images.xcassets */; };
 		4510AFF01CB5A96100654387 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4510AFEE1CB5A96100654387 /* LaunchScreen.xib */; };
 		4510AFFC1CB5A96200654387 /* SWTowerDefenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510AFFB1CB5A96200654387 /* SWTowerDefenseTests.swift */; };
+		452F65D81CCAC4EC00027DD0 /* button_about.png in Resources */ = {isa = PBXBuildFile; fileRef = 452F65D61CCAC4EC00027DD0 /* button_about.png */; };
+		452F65D91CCAC4EC00027DD0 /* button_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 452F65D71CCAC4EC00027DD0 /* button_play.png */; };
+		456A95501CCAA34B00149C3C /* loadScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 456A954B1CCAA34B00149C3C /* loadScreen.png */; };
+		456A95521CCAA34B00149C3C /* menu_authors.png in Resources */ = {isa = PBXBuildFile; fileRef = 456A954D1CCAA34B00149C3C /* menu_authors.png */; };
+		456A95531CCAA34B00149C3C /* menu_howToPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 456A954E1CCAA34B00149C3C /* menu_howToPlay.png */; };
+		456A95541CCAA34B00149C3C /* menu_main.png in Resources */ = {isa = PBXBuildFile; fileRef = 456A954F1CCAA34B00149C3C /* menu_main.png */; };
+		456A955A1CCAAC7B00149C3C /* AboutScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A95591CCAAC7B00149C3C /* AboutScene.swift */; };
+		456A955C1CCAB72B00149C3C /* menu_about.png in Resources */ = {isa = PBXBuildFile; fileRef = 456A955B1CCAB72B00149C3C /* menu_about.png */; };
 		45C5250A1CB5E5B400705AAA /* Tower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C525091CB5E5B400705AAA /* Tower.swift */; };
 		45C5250C1CB5EA4D00705AAA /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C5250B1CB5EA4D00705AAA /* MenuScene.swift */; };
-		45C5250E1CB5EA5B00705AAA /* MenuSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C5250D1CB5EA5B00705AAA /* MenuSceneViewController.swift */; };
 		45C525101CB5EAF700705AAA /* Critter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C5250F1CB5EAF700705AAA /* Critter.swift */; };
 		45CB71C41CC078D00027A9A4 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CB71C31CC078D00027A9A4 /* Bullet.swift */; };
 		45CB71C61CC079430027A9A4 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 45CB71C51CC079430027A9A4 /* bullet.png */; };
+		45CB71D61CC2D8720027A9A4 /* stormtrooper.png in Resources */ = {isa = PBXBuildFile; fileRef = 45CB71D51CC2D8720027A9A4 /* stormtrooper.png */; };
+		45CB71D81CC2D9C00027A9A4 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 45CB71D71CC2D9C00027A9A4 /* background.png */; };
+		45CB71DA1CC2E2220027A9A4 /* towerY.png in Resources */ = {isa = PBXBuildFile; fileRef = 45CB71D91CC2E2220027A9A4 /* towerY.png */; };
 		45E0DE5D1CB74783000024E0 /* Star Wars - Cantina Theme_40622300_soundcloud.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45E0DE5B1CB74783000024E0 /* Star Wars - Cantina Theme_40622300_soundcloud.mp3 */; };
 		45E0DE5E1CB74783000024E0 /* Star Wars - Duel of the Fates_50146898_soundcloud.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45E0DE5C1CB74783000024E0 /* Star Wars - Duel of the Fates_50146898_soundcloud.mp3 */; };
-		45EB8DDD1CBEDB6900B96781 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 45EB8DDC1CBEDB6900B96781 /* line.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,15 +54,24 @@
 		4510AFF51CB5A96200654387 /* SWTowerDefenseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWTowerDefenseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4510AFFA1CB5A96200654387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4510AFFB1CB5A96200654387 /* SWTowerDefenseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWTowerDefenseTests.swift; sourceTree = "<group>"; };
+		452F65D61CCAC4EC00027DD0 /* button_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_about.png; path = ../button_about.png; sourceTree = "<group>"; };
+		452F65D71CCAC4EC00027DD0 /* button_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_play.png; path = ../button_play.png; sourceTree = "<group>"; };
+		456A954B1CCAA34B00149C3C /* loadScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadScreen.png; sourceTree = "<group>"; };
+		456A954D1CCAA34B00149C3C /* menu_authors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_authors.png; sourceTree = "<group>"; };
+		456A954E1CCAA34B00149C3C /* menu_howToPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_howToPlay.png; sourceTree = "<group>"; };
+		456A954F1CCAA34B00149C3C /* menu_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_main.png; sourceTree = "<group>"; };
+		456A95591CCAAC7B00149C3C /* AboutScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutScene.swift; sourceTree = "<group>"; };
+		456A955B1CCAB72B00149C3C /* menu_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu_about.png; path = ../menu_about.png; sourceTree = "<group>"; };
 		45C525091CB5E5B400705AAA /* Tower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tower.swift; sourceTree = "<group>"; };
 		45C5250B1CB5EA4D00705AAA /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
-		45C5250D1CB5EA5B00705AAA /* MenuSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSceneViewController.swift; sourceTree = "<group>"; };
 		45C5250F1CB5EAF700705AAA /* Critter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Critter.swift; sourceTree = "<group>"; };
 		45CB71C31CC078D00027A9A4 /* Bullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		45CB71C51CC079430027A9A4 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
+		45CB71D51CC2D8720027A9A4 /* stormtrooper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stormtrooper.png; path = ../stormtrooper.png; sourceTree = "<group>"; };
+		45CB71D71CC2D9C00027A9A4 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../background.png; sourceTree = "<group>"; };
+		45CB71D91CC2E2220027A9A4 /* towerY.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = towerY.png; sourceTree = "<group>"; };
 		45E0DE5B1CB74783000024E0 /* Star Wars - Cantina Theme_40622300_soundcloud.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Star Wars - Cantina Theme_40622300_soundcloud.mp3"; sourceTree = "<group>"; };
 		45E0DE5C1CB74783000024E0 /* Star Wars - Duel of the Fates_50146898_soundcloud.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Star Wars - Duel of the Fates_50146898_soundcloud.mp3"; sourceTree = "<group>"; };
-		45EB8DDC1CBEDB6900B96781 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +121,7 @@
 				4510AFEC1CB5A96100654387 /* Images.xcassets */,
 				4510AFEE1CB5A96100654387 /* LaunchScreen.xib */,
 				45C5250B1CB5EA4D00705AAA /* MenuScene.swift */,
-				45C5250D1CB5EA5B00705AAA /* MenuSceneViewController.swift */,
+				456A95591CCAAC7B00149C3C /* AboutScene.swift */,
 				4510AFDF1CB5A96100654387 /* Supporting Files */,
 				45C525091CB5E5B400705AAA /* Tower.swift */,
 			);
@@ -113,8 +131,17 @@
 		4510AFDF1CB5A96100654387 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				452F65D61CCAC4EC00027DD0 /* button_about.png */,
+				452F65D71CCAC4EC00027DD0 /* button_play.png */,
+				456A955B1CCAB72B00149C3C /* menu_about.png */,
+				456A954B1CCAA34B00149C3C /* loadScreen.png */,
+				456A954D1CCAA34B00149C3C /* menu_authors.png */,
+				456A954E1CCAA34B00149C3C /* menu_howToPlay.png */,
+				456A954F1CCAA34B00149C3C /* menu_main.png */,
+				45CB71D91CC2E2220027A9A4 /* towerY.png */,
+				45CB71D71CC2D9C00027A9A4 /* background.png */,
+				45CB71D51CC2D8720027A9A4 /* stormtrooper.png */,
 				45CB71C51CC079430027A9A4 /* bullet.png */,
-				45EB8DDC1CBEDB6900B96781 /* line.png */,
 				45E0DE5B1CB74783000024E0 /* Star Wars - Cantina Theme_40622300_soundcloud.mp3 */,
 				45E0DE5C1CB74783000024E0 /* Star Wars - Duel of the Fates_50146898_soundcloud.mp3 */,
 				4510AFE01CB5A96100654387 /* Info.plist */,
@@ -221,12 +248,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				452F65D91CCAC4EC00027DD0 /* button_play.png in Resources */,
 				4510AFF01CB5A96100654387 /* LaunchScreen.xib in Resources */,
+				456A95501CCAA34B00149C3C /* loadScreen.png in Resources */,
 				45CB71C61CC079430027A9A4 /* bullet.png in Resources */,
-				45EB8DDD1CBEDB6900B96781 /* line.png in Resources */,
+				45CB71D81CC2D9C00027A9A4 /* background.png in Resources */,
 				45E0DE5E1CB74783000024E0 /* Star Wars - Duel of the Fates_50146898_soundcloud.mp3 in Resources */,
+				452F65D81CCAC4EC00027DD0 /* button_about.png in Resources */,
+				456A955C1CCAB72B00149C3C /* menu_about.png in Resources */,
 				4510AFED1CB5A96100654387 /* Images.xcassets in Resources */,
 				45E0DE5D1CB74783000024E0 /* Star Wars - Cantina Theme_40622300_soundcloud.mp3 in Resources */,
+				456A95531CCAA34B00149C3C /* menu_howToPlay.png in Resources */,
+				456A95541CCAA34B00149C3C /* menu_main.png in Resources */,
+				45CB71D61CC2D8720027A9A4 /* stormtrooper.png in Resources */,
+				456A95521CCAA34B00149C3C /* menu_authors.png in Resources */,
+				45CB71DA1CC2E2220027A9A4 /* towerY.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,8 +283,8 @@
 				45C525101CB5EAF700705AAA /* Critter.swift in Sources */,
 				4510AFE61CB5A96100654387 /* GameScene.swift in Sources */,
 				4510AFE81CB5A96100654387 /* GameViewController.swift in Sources */,
-				45C5250E1CB5EA5B00705AAA /* MenuSceneViewController.swift in Sources */,
 				45C5250C1CB5EA4D00705AAA /* MenuScene.swift in Sources */,
+				456A955A1CCAAC7B00149C3C /* AboutScene.swift in Sources */,
 				4510AFE21CB5A96100654387 /* AppDelegate.swift in Sources */,
 				45C5250A1CB5E5B400705AAA /* Tower.swift in Sources */,
 				45CB71C41CC078D00027A9A4 /* Bullet.swift in Sources */,
@@ -372,6 +408,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SWTowerDefense/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -382,6 +419,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SWTowerDefense/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
