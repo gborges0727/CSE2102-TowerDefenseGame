@@ -118,7 +118,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if (firstBody.health <= 0) {
                     firstBody.removeFromParent()
                     let critterIndex = critters.indexOf(firstBody)
-                    critters.removeAtIndex(critterIndex!)
+                    if (critterIndex != nil) {
+                        critters.removeAtIndex(critterIndex!)
+                    }
                     
                     updateLabels(cashChange: 50, livesChange: 0)
                     secondBody.originTower.currentEnemy = nil
@@ -222,6 +224,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             
             if (tower.currentEnemy != nil) {
+                let critterExists = critters.indexOf(tower.currentEnemy)
+                
+                if (critterExists == nil) {
+                    findCritterForTower(tower)
+                }
+                
+                rotateTower(tower)
                 let distance = calcDistance(firstPoint: tower.position, secondPoint: tower.currentEnemy.position)
                 if (distance < tower.attackRange) {
                     if (tower.lastFireTime > tower.fireRate) {
@@ -240,7 +249,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if (tower.currentEnemy == nil) {
                     tower.canFire = false
                 }
-                //fireTower(tower)
             }
         }
     }
@@ -294,6 +302,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 bullet.position.y += vy
             }
         }
+    }
+    
+    func rotateTower(tower: Tower) {
+        let location = tower.currentEnemy.position
+        
+        let dx = location.x - tower.position.x
+        let dy = location.y - tower.position.y
+        let angle = atan2(dy, dx) - CGFloat(M_PI / 2)
+        
+        tower.zRotation = angle
     }
     
     func fireTower(tower: Tower) {
