@@ -20,6 +20,7 @@ class Tower: SKSpriteNode {
     var fireRate = NSTimeInterval(0.5)
     var lastFireTime = NSTimeInterval(0)
     var lastUpdateTime = NSTimeInterval(0)
+    var rotationAngle: CGFloat!
     
 
     //var level = 1

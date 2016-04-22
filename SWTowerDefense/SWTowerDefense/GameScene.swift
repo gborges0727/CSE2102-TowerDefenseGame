@@ -39,15 +39,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundMap.zPosition = 0
         self.addChild(backgroundMap)
         
-        //self.backgroundColor = SKColor.greenColor()
-        livesLabel.fontSize = 30
-        livesLabel.position = CGPointMake(100, 100)
-        livesLabel.fontColor = UIColor.blackColor()
+        livesLabel.fontSize = 25
+        livesLabel.position = CGPointMake(self.size.width - 100, self.size.height - 50)
+        livesLabel.fontColor = UIColor.whiteColor()
         livesLabel.zPosition = 1
         
-        cashLabel.fontSize = 30
-        cashLabel.position = CGPointMake(100, 200)
-        cashLabel.fontColor = UIColor.blackColor()
+        cashLabel.fontSize = 25
+        cashLabel.position = CGPointMake(self.size.width - 300, self.size.height - 50)
+        cashLabel.fontColor = UIColor.whiteColor()
         cashLabel.zPosition = 1
         
         updateLabels(cashChange: 0, livesChange: 0)
@@ -74,7 +73,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 tower.xScale = 0.5
                 tower.yScale = 0.5
                 tower.position = location
-                tower.zPosition = 1
+                tower.zPosition = 2
                 addChild(tower)
                 towers.append(tower)
                 updateLabels(cashChange: -tower.towerCost, livesChange: 0)
@@ -91,10 +90,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             tower.lastUpdateTime = currentTime
             
             tower.lastFireTime += calcDiff
-            print ("currentime: ", currentTime)
-            print ("lastFireTime: ", tower.lastFireTime)
-            print ("lastUpdateTime: ", tower.lastUpdateTime)
-            print ("lastFireTime: ", tower.lastFireTime)
         }
         
         updateBulletPositions()
@@ -162,15 +157,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let pointEight = CGPointMake(self.size.width * 0.862, self.size.width * 0.0521)
             let pointNine = CGPointMake(self.size.width * 0.862,self.size.height * 0.703)
             
-            let moveInitToTwo = SKAction.moveTo(pointTwo, duration: critter.walkSpeed)
-            let moveToThree = SKAction.moveTo(pointThree, duration: critter.walkSpeed / 2.5)
-            let moveToFour = SKAction.moveTo(pointFour, duration: critter.walkSpeed)
-            let moveToFive = SKAction.moveTo(pointFive, duration: critter.walkSpeed / 2.5)
-            let moveToSix = SKAction.moveTo(pointSix, duration: critter.walkSpeed)
-            let moveToSeven = SKAction.moveTo(pointSeven, duration: critter.walkSpeed)
-            let moveToEight = SKAction.moveTo(pointEight, duration: critter.walkSpeed)
-            let moveToNine = SKAction.moveTo(pointNine, duration: critter.walkSpeed)
-            let moveToEnd = SKAction.moveTo(self.endPoint, duration: critter.walkSpeed)
+            let moveInitToTwo = SKAction.moveTo(pointTwo, duration: critter.walkSpeed * 0.964)
+            let moveToThree = SKAction.moveTo(pointThree, duration: critter.walkSpeed * 0.62)
+            let moveToFour = SKAction.moveTo(pointFour, duration: critter.walkSpeed * 0.512)
+            let moveToFive = SKAction.moveTo(pointFive, duration: critter.walkSpeed * 0.432)
+            let moveToSix = SKAction.moveTo(pointSix, duration: critter.walkSpeed * 0.32)
+            let moveToSeven = SKAction.moveTo(pointSeven, duration: critter.walkSpeed * 0.62)
+            let moveToEight = SKAction.moveTo(pointEight, duration: critter.walkSpeed * 1.6)
+            let moveToNine = SKAction.moveTo(pointNine, duration: critter.walkSpeed * 0.8)
+            let moveToEnd = SKAction.moveTo(self.endPoint, duration: critter.walkSpeed * 0.32)
             
             let moveSequence = SKAction.sequence([moveInitToTwo, moveToThree, moveToFour, moveToFive, moveToSix, moveToSeven, moveToEight, moveToNine, moveToEnd])
             critter.runAction(moveSequence)

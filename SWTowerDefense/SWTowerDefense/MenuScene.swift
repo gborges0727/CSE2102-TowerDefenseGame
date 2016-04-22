@@ -14,9 +14,6 @@ class MenuScene: SKScene {
     var aboutButton: SKSpriteNode! = nil
     
     override func didMoveToView(view: SKView) {
-        print("func run")
-        print(self.size.height)
-        print(self.size.width)
         let background = SKSpriteNode(imageNamed: "menu_main")
         background.position = CGPointMake(self.size.width/2, self.size.height/2)
         background.size = self.size
