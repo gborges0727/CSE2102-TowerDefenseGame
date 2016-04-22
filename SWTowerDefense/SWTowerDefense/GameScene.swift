@@ -60,8 +60,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(livesLabel)
         self.addChild(cashLabel)
         loadCritters()
-        print(self.size.height)
-        print(self.size.width)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
