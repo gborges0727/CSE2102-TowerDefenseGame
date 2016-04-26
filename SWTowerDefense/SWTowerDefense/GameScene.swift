@@ -21,7 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bullets = [Bullet]()
     
     var shootTimer = NSTimer()
-    var lives = 100
+    var lives = 10
     var cash = 1000
     let livesLabel = SKLabelNode(fontNamed: "Arial")
     let cashLabel = SKLabelNode(fontNamed: "Arial")
@@ -44,7 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(backgroundMap)
         
         livesLabel.fontSize = 25
-        livesLabel.position = CGPointMake(self.size.width - 100, self.size.height - 50)
+        livesLabel.position = CGPointMake(self.size.width - 140, self.size.height - 50)
         livesLabel.fontColor = UIColor.whiteColor()
         livesLabel.zPosition = 1
         
@@ -60,7 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         endPointNode.size = CGSize(width: 1, height: 1)
         
         exitButton = SKSpriteNode(imageNamed: "button_exit")
-        exitButton.position = CGPointMake(self.size.width - 20, self.size.height - 20)
+        exitButton.position = CGPointMake(self.size.width - 40, self.size.height - 40)
         exitButton.size = CGSize(width: 60, height: 60)
         exitButton.zPosition = 2
         self.addChild(exitButton)
@@ -226,6 +226,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lives = lives + livesChange
         cashLabel.text = "Cash: " + String(cash)
         livesLabel.text = "Lives: " + String(lives)
+        
+        if lives <= 0 {
+            let scene =  GameOverScene(size: self.size)
+            let skView = self.view! as SKView
+            skView.ignoresSiblingOrder = true
+            scene.scaleMode = .ResizeFill
+            scene.size = skView.bounds.size
+            let transition = SKTransition.fadeWithDuration(1)
+            skView.presentScene(scene, transition: transition)
+        }
     }
     
     func critterIsAtEndCheck() {
