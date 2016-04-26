@@ -11,7 +11,6 @@
 		4510AFE61CB5A96100654387 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510AFE51CB5A96100654387 /* GameScene.swift */; };
 		4510AFE81CB5A96100654387 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510AFE71CB5A96100654387 /* GameViewController.swift */; };
 		4510AFED1CB5A96100654387 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4510AFEC1CB5A96100654387 /* Images.xcassets */; };
-		4510AFF01CB5A96100654387 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4510AFEE1CB5A96100654387 /* LaunchScreen.xib */; };
 		4510AFFC1CB5A96200654387 /* SWTowerDefenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510AFFB1CB5A96200654387 /* SWTowerDefenseTests.swift */; };
 		452F65D81CCAC4EC00027DD0 /* button_about.png in Resources */ = {isa = PBXBuildFile; fileRef = 452F65D61CCAC4EC00027DD0 /* button_about.png */; };
 		452F65D91CCAC4EC00027DD0 /* button_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 452F65D71CCAC4EC00027DD0 /* button_play.png */; };
@@ -30,6 +29,7 @@
 		4594837B1CCF236300599716 /* gameOverBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4594837A1CCF236300599716 /* gameOverBackground.png */; };
 		4594837D1CCF259900599716 /* button_howTo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4594837C1CCF259900599716 /* button_howTo.png */; };
 		4594837F1CCF266D00599716 /* button_authors.png in Resources */ = {isa = PBXBuildFile; fileRef = 4594837E1CCF266D00599716 /* button_authors.png */; };
+		459483811CCFBA4000599716 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459483801CCFBA4000599716 /* LaunchScreen.storyboard */; };
 		45C5250A1CB5E5B400705AAA /* Tower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C525091CB5E5B400705AAA /* Tower.swift */; };
 		45C5250C1CB5EA4D00705AAA /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C5250B1CB5EA4D00705AAA /* MenuScene.swift */; };
 		45C525101CB5EAF700705AAA /* Critter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C5250F1CB5EAF700705AAA /* Critter.swift */; };
@@ -59,7 +59,6 @@
 		4510AFE51CB5A96100654387 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		4510AFE71CB5A96100654387 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4510AFEC1CB5A96100654387 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		4510AFEF1CB5A96100654387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4510AFF51CB5A96200654387 /* SWTowerDefenseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWTowerDefenseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4510AFFA1CB5A96200654387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4510AFFB1CB5A96200654387 /* SWTowerDefenseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWTowerDefenseTests.swift; sourceTree = "<group>"; };
@@ -80,6 +79,7 @@
 		4594837A1CCF236300599716 /* gameOverBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameOverBackground.png; sourceTree = "<group>"; };
 		4594837C1CCF259900599716 /* button_howTo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_howTo.png; path = ../button_howTo.png; sourceTree = "<group>"; };
 		4594837E1CCF266D00599716 /* button_authors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_authors.png; path = ../button_authors.png; sourceTree = "<group>"; };
+		459483801CCFBA4000599716 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ../LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45C525091CB5E5B400705AAA /* Tower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tower.swift; sourceTree = "<group>"; };
 		45C5250B1CB5EA4D00705AAA /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		45C5250F1CB5EAF700705AAA /* Critter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Critter.swift; sourceTree = "<group>"; };
@@ -141,8 +141,8 @@
 				4510AFE71CB5A96100654387 /* GameViewController.swift */,
 				4594836A1CCF18E200599716 /* HowToPlayScene.swift */,
 				4510AFEC1CB5A96100654387 /* Images.xcassets */,
-				4510AFEE1CB5A96100654387 /* LaunchScreen.xib */,
 				45C5250B1CB5EA4D00705AAA /* MenuScene.swift */,
+				459483801CCFBA4000599716 /* LaunchScreen.storyboard */,
 				4510AFDF1CB5A96100654387 /* Supporting Files */,
 				45C525091CB5E5B400705AAA /* Tower.swift */,
 			);
@@ -276,7 +276,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				452F65D91CCAC4EC00027DD0 /* button_play.png in Resources */,
-				4510AFF01CB5A96100654387 /* LaunchScreen.xib in Resources */,
 				456A95501CCAA34B00149C3C /* loadScreen.png in Resources */,
 				459483791CCF225D00599716 /* Order66_music.mp3 in Resources */,
 				459483731CCF19F700599716 /* button_back.png in Resources */,
@@ -294,6 +293,7 @@
 				456A95541CCAA34B00149C3C /* menu_main.png in Resources */,
 				4594837D1CCF259900599716 /* button_howTo.png in Resources */,
 				45CB71D61CC2D8720027A9A4 /* stormtrooper.png in Resources */,
+				459483811CCFBA4000599716 /* LaunchScreen.storyboard in Resources */,
 				456A95521CCAA34B00149C3C /* menu_authors.png in Resources */,
 				45CB71DA1CC2E2220027A9A4 /* towerY.png in Resources */,
 			);
@@ -344,17 +344,6 @@
 			targetProxy = 4510AFF61CB5A96200654387 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		4510AFEE1CB5A96100654387 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4510AFEF1CB5A96100654387 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4510AFFD1CB5A96200654387 /* Debug */ = {
@@ -444,7 +433,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SWTowerDefense/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -455,7 +443,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SWTowerDefense/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
