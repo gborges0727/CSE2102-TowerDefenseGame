@@ -58,6 +58,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(livesLabel)
         self.addChild(cashLabel)
+        
+        let music = SKAction.playSoundFileNamed("DuelOfTheFates", waitForCompletion: true)
+        runAction(SKAction.repeatActionForever(music))
+        
         loadCritters()
     }
     

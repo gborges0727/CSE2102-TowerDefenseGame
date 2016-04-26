@@ -12,6 +12,7 @@ class MenuScene: SKScene {
     
     var playButton: SKSpriteNode! = nil
     var aboutButton: SKSpriteNode! = nil
+    var music: SKAction! = nil
     
     override func didMoveToView(view: SKView) {
         let background = SKSpriteNode(imageNamed: "menu_main")
@@ -31,6 +32,9 @@ class MenuScene: SKScene {
         aboutButton.size = CGSize(width: 200, height: 175)
         aboutButton.zPosition = 1
         self.addChild(aboutButton)
+        
+        music = SKAction.playSoundFileNamed("CantinaTheme", waitForCompletion: false)
+        self.runAction(SKAction.repeatActionForever(music))
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -44,15 +48,17 @@ class MenuScene: SKScene {
                 scene.scaleMode = .ResizeFill
                 scene.size = skView.bounds.size
                 let transition = SKTransition.fadeWithDuration(1)
+                self.removeAllActions()
                 skView.presentScene(scene, transition: transition)
             }
             
             else if (aboutButton.containsPoint(location)) {
-                let scene =  AboutScene(size: self.size)
+                let scene = AboutScene(size: self.size)
                 let skView = self.view! as SKView
                 skView.ignoresSiblingOrder = true
                 scene.scaleMode = .ResizeFill
                 scene.size = skView.bounds.size
+                self.removeActionForKey("music")
                 skView.presentScene(scene)
             }
         }
