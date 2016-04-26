@@ -67,7 +67,8 @@ class MenuScene: SKScene {
                 skView.ignoresSiblingOrder = true
                 scene.scaleMode = .ResizeFill
                 scene.size = skView.bounds.size
-                skView.presentScene(scene)
+                let transition = SKTransition.fadeWithDuration(1)
+                skView.presentScene(scene, transition: transition)
             }
         }
     }

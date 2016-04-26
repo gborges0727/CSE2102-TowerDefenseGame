@@ -19,12 +19,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var critters = [Critter]()
     var towers = [Tower]()
     var bullets = [Bullet]()
+    
     var shootTimer = NSTimer()
     var lives = 100
     var cash = 1000
     let livesLabel = SKLabelNode(fontNamed: "Arial")
     let cashLabel = SKLabelNode(fontNamed: "Arial")
     var endPoint = CGPointMake(667.0,232.625)
+    
+    var exitButton: SKSpriteNode!
     var backgroundMusic: AVAudioPlayer!
     
     override func didMoveToView(view: SKView) {
@@ -56,6 +59,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         endPointNode.position = endPoint
         endPointNode.size = CGSize(width: 1, height: 1)
         
+        exitButton = SKSpriteNode(imageNamed: "button_exit")
+        exitButton.position = CGPointMake(self.size.width - 20, self.size.height - 20)
+        exitButton.size = CGSize(width: 60, height: 60)
+        exitButton.zPosition = 2
+        self.addChild(exitButton)
+        
         
         self.addChild(livesLabel)
         self.addChild(cashLabel)
@@ -81,7 +90,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.locationInNode(self)
             
             let tower = Tower()
-            if (canAffordTower(tower.towerCost)) {
+            
+            if (exitButton.containsPoint(location)) {
+                let scene =  MenuScene(size: self.size)
+                let skView = self.view! as SKView
+                skView.ignoresSiblingOrder = true
+                scene.scaleMode = .ResizeFill
+                scene.size = skView.bounds.size
+                let transition = SKTransition.fadeWithDuration(1)
+                skView.presentScene(scene, transition: transition)
+            }
+            
+            if (canAffordTower(tower.towerCost) && !exitButton.containsPoint(location)) {
                 
                 tower.xScale = 0.5
                 tower.yScale = 0.5

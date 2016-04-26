@@ -11,7 +11,9 @@ import SpriteKit
 @available(iOS 9.0, *)
 class AboutScene: SKScene {
     
-    var backButton: SKSpriteNode! = nil
+    var backButton: SKSpriteNode!
+    var authorsButton: SKSpriteNode!
+    var howToButton: SKSpriteNode!
     
     override func didMoveToView(view: SKView) {
         let background = SKSpriteNode(imageNamed: "menu_about")
@@ -25,6 +27,18 @@ class AboutScene: SKScene {
         backButton.size = CGSize(width: 50, height: 50)
         backButton.zPosition = 1
         self.addChild(backButton)
+        
+        howToButton = SKSpriteNode(imageNamed: "button_howTo")
+        howToButton.position = CGPointMake(200, 75)
+        howToButton.size = CGSize(width: 200, height: 175)
+        howToButton.zPosition = 1
+        self.addChild(howToButton)
+        
+        authorsButton = SKSpriteNode(imageNamed: "button_authors")
+        authorsButton.position = CGPointMake(self.size.width - 200, 75)
+        authorsButton.size = CGSize(width: 200, height: 175)
+        authorsButton.zPosition = 1
+        self.addChild(authorsButton)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -37,8 +51,28 @@ class AboutScene: SKScene {
                 skView.ignoresSiblingOrder = true
                 scene.scaleMode = .ResizeFill
                 scene.size = skView.bounds.size
-                self.removeActionForKey("music")
-                skView.presentScene(scene)
+                let transition = SKTransition.fadeWithDuration(1)
+                skView.presentScene(scene, transition: transition)
+            }
+            
+            if (howToButton.containsPoint(location)) {
+                let scene =  HowToPlayScene(size: self.size)
+                let skView = self.view! as SKView
+                skView.ignoresSiblingOrder = true
+                scene.scaleMode = .ResizeFill
+                scene.size = skView.bounds.size
+                let transition = SKTransition.fadeWithDuration(1)
+                skView.presentScene(scene, transition: transition)
+            }
+                
+            else if (authorsButton.containsPoint(location)) {
+                let scene = AuthorsScene(size: self.size)
+                let skView = self.view! as SKView
+                skView.ignoresSiblingOrder = true
+                scene.scaleMode = .ResizeFill
+                scene.size = skView.bounds.size
+                let transition = SKTransition.fadeWithDuration(1)
+                skView.presentScene(scene, transition: transition)
             }
         }
     }
