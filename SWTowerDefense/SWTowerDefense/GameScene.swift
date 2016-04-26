@@ -7,15 +7,15 @@
 //
 
 import SpriteKit
+import AVFoundation
 
+@available(iOS 9.0, *)
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let critterCategory = UInt32(0x1)
     let bulletCategory = UInt32(0x1 << 1)
     let sceneCategory = UInt32(0x1 << 2)
-    
-    
-    
+
     var critters = [Critter]()
     var towers = [Tower]()
     var bullets = [Bullet]()
@@ -25,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let livesLabel = SKLabelNode(fontNamed: "Arial")
     let cashLabel = SKLabelNode(fontNamed: "Arial")
     var endPoint = CGPointMake(667.0,232.625)
+    var backgroundMusic: AVAudioPlayer!
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -59,8 +60,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(livesLabel)
         self.addChild(cashLabel)
         
-        let music = SKAction.playSoundFileNamed("DuelOfTheFates", waitForCompletion: true)
-        runAction(SKAction.repeatActionForever(music))
+        let path = NSBundle.mainBundle().pathForResource("DuelOfTheFates.mp3", ofType:nil)!
+        let url = NSURL(fileURLWithPath: path)
+        
+        do {
+            let sound = try AVAudioPlayer(contentsOfURL: url)
+            backgroundMusic = sound
+            sound.play()
+        } catch {
+            // couldn't load file :(
+        }
         
         loadCritters()
     }

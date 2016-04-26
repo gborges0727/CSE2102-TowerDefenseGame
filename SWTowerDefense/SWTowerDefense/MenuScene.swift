@@ -7,12 +7,14 @@
 //
 
 import SpriteKit
+import AVFoundation
 
+@available(iOS 9.0, *)
 class MenuScene: SKScene {
     
     var playButton: SKSpriteNode! = nil
     var aboutButton: SKSpriteNode! = nil
-    var music: SKAction! = nil
+    var backgroundMusic: AVAudioPlayer!
     
     override func didMoveToView(view: SKView) {
         let background = SKSpriteNode(imageNamed: "menu_main")
@@ -33,8 +35,16 @@ class MenuScene: SKScene {
         aboutButton.zPosition = 1
         self.addChild(aboutButton)
         
-        music = SKAction.playSoundFileNamed("CantinaTheme", waitForCompletion: false)
-        self.runAction(SKAction.repeatActionForever(music))
+        let path = NSBundle.mainBundle().pathForResource("CantinaTheme.mp3", ofType:nil)!
+        let url = NSURL(fileURLWithPath: path)
+        
+        do {
+            let sound = try AVAudioPlayer(contentsOfURL: url)
+            backgroundMusic = sound
+            sound.play()
+        } catch {
+            // couldn't load file :(
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -48,7 +58,6 @@ class MenuScene: SKScene {
                 scene.scaleMode = .ResizeFill
                 scene.size = skView.bounds.size
                 let transition = SKTransition.fadeWithDuration(1)
-                self.removeAllActions()
                 skView.presentScene(scene, transition: transition)
             }
             
@@ -58,7 +67,6 @@ class MenuScene: SKScene {
                 skView.ignoresSiblingOrder = true
                 scene.scaleMode = .ResizeFill
                 scene.size = skView.bounds.size
-                self.removeActionForKey("music")
                 skView.presentScene(scene)
             }
         }

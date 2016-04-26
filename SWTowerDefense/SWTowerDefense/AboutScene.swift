@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+@available(iOS 9.0, *)
 class AboutScene: SKScene {
     
     var backButton: SKSpriteNode! = nil
